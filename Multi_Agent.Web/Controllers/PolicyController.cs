@@ -1,9 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Multi_Agent.Application.Interfaces;
 
 namespace Multi_Agent.Web.Controllers
 {
     public class PolicyController : Controller
     {
+        private readonly IPolicyService _policyService;
+        public PolicyController(IPolicyService policyService)
+        {
+            _policyService = policyService;
+        }
         public IActionResult Index()
         {
             //utworzyć wido dla tej akcji
@@ -13,7 +19,7 @@ namespace Multi_Agent.Web.Controllers
             //serwis przygotuje dane
             //serwis musi zwrócić dane w odpowiednim formacie
 
-            var model = policyService.GetAllPoliciesForList();
+            var model = _policyService.GetAllPoliciesForList();
 
             return View(model);
 
@@ -25,17 +31,17 @@ namespace Multi_Agent.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult AddPolicy(PolicyModel model)
-        {
-            var id = policyServise.AddCustomer(model);
-            return View();
-        }
+        //[HttpPost]
+        //public IActionResult AddPolicy(PolicyModel model)
+        //{
+        //    var id = _policyService.AddCustomer(model);
+        //    return View();
+        //}
 
-        public IActionResult ViewPolicy(int policyId)
-        {
-            var policyModel = policyService.GetPolicyById(policyId);
-            return View(policyModel);
-        }
+        //public IActionResult ViewPolicy(int policyId)
+        //{
+        //    var policyModel = _policyService.GetPolicyDetails(policyId);
+        //    return View(policyModel);
+        //}
     }
 }

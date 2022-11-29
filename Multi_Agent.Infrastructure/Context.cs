@@ -50,6 +50,12 @@ namespace Multi_Agent.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // -------------- poniższą linie dodano w celu wyelinowania błedu:
+            //System.InvalidOperationException: 'The entity type 'IdentityUserLogin<string>' requires a primary key to be defined.
+            // If you intended to use a keyless entity type,
+            // call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07BCCF7A1E");
@@ -485,6 +491,8 @@ namespace Multi_Agent.Infrastructure
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+
     }
 
 }

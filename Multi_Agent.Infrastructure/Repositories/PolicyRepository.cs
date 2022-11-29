@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Multi_Agent.Infrastructure.Repositories
 {
-    internal class PolicyRepository : IPolicyRepository
+    public class PolicyRepository : IPolicyRepository
     {
         private readonly Context _context;
         public PolicyRepository(Context context )
@@ -39,10 +39,19 @@ namespace Multi_Agent.Infrastructure.Repositories
             return policies;
         }
 
-        public Policy GetPoliciesById(int policyId)
+        public Policy GetPolicy(int policyId)
         {
             var policy = _context.Policies.FirstOrDefault(i => i.Id == policyId); 
             return policy;
         }
+
+
+        public IQueryable<Policy> GetAllActivePolicies()
+        {
+            //return _context.Policies.Where(p => p.IsActive == true);
+            return _context.Policies;
+        }
+
+
     }
 }

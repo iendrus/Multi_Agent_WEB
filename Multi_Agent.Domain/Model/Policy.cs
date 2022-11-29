@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 
 namespace Multi_Agent.Domain.Model;
 
 public partial class Policy
 {
+
     public int Id { get; set; }
 
     public int CustomerId { get; set; }
