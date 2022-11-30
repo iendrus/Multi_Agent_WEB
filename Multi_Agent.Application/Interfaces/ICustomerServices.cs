@@ -7,16 +7,13 @@ using System.Threading.Tasks;
 
 namespace Multi_Agent.Application.Interfaces
 {
-    public interface IPolicyService
+    public interface ICustomerServices
     {
-        ListPolicyForListVm GetAllPoliciesForList();
+        ListPolicyForListVm GetAllCustomersForList();
 
         //int AddPolicy(NewPolicyVm policy);
 
         //PolicyDetailsVm GetPolicyDetails(int policyId);
-        PolicyForListVm GetPolicyDetails(int policyId);
-
-
-
+        PolicyForListVm GetCustomerDetails(int Id);
     }
 }

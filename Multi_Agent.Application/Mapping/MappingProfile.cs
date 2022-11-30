@@ -18,18 +18,19 @@ namespace Multi_Agent.Application.Mapping
 
         private void ApplyMappingsFromAssembly(Assembly assembly)
         {
+            // ze wszystkich typów biorę wszystkie interfejsy genereyczne, które implementują interfejs IMapFrom
             var types = assembly.GetExportedTypes()
                 .Where(t => t.GetInterfaces().Any(i =>
                     i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>)))
                 .ToList();
 
+            // na wszystkich wyszukanych typach wykonuje metoedę Mapping, która stworzy mapowanie obiektów 
             foreach (var type in types)
             {
                 var instance = Activator.CreateInstance(type);
                 var methodInfo = type.GetMethod("Mapping");
                 methodInfo?.Invoke(instance, new object[] { this });
             }
-
         }
     }
 }

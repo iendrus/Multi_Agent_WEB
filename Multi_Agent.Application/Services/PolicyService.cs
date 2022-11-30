@@ -36,27 +36,6 @@ namespace Multi_Agent.Application.Services
                 Count = policies.Count
             };
             return policyList;
-
-
-
-            // poniżesze mapowania są zastąpione AutoMapperem
-            //var policies = _policyRepo.GetAllActivePolicies();
-            //ListPolicyForListVm result = new ListPolicyForListVm();
-            //result.Policies = new List<PolicyForListVm>();
-            //foreach (var policy in policies)
-            //{
-            //    var PolicyVm = new PolicyForListVm()
-            //    {
-            //        Id = policy.Id,
-            //        PolicyNumber = policy.PolicyNumber,
-            //        PolicyStatusName = policy.PolicyStatus.Name,
-            //        PolicyTypeName = policy.PolicyType.Name,
-            //        InsuranceCompanyName = policy.InsuranceCompany.Name
-            //    };
-            //    result.Policies.Add(PolicyVm);
-            //}
-            //result.Count = result.Policies.Count;
-            //return result;
         }
 
         int AddPolicy(NewPolicyVm policy)
@@ -64,19 +43,23 @@ namespace Multi_Agent.Application.Services
             throw new NotImplementedException();
         }
 
-        PolicyDetailsVm GetPolicyDetails(int policyId)
+        //public PolicyDetailsVm GetPolicyDetails(int policyId)
+        //{
+        //    var policy = _policyRepo.GetPolicy(policyId);
+        //    //metoda Map jest stosowana przy pojedynczym elemencje, natomiast ProjektTo przy kolekcjach
+        //    var policyVm = _mapper.Map<PolicyDetailsVm>(policy);
+
+        //    return policyVm;
+        //}
+
+        public PolicyForListVm GetPolicyDetails(int policyId)
         {
             var policy = _policyRepo.GetPolicy(policyId);
-            //var policyVm = new PolicyDetailsVm();
             //metoda Map jest stosowana przy pojedynczym elemencje, natomiast ProjektTo przy kolekcjach
-            var policyVm = _mapper.Map<PolicyDetailsVm>(policy);
+            var policyVm = _mapper.Map<PolicyForListVm>(policy);
 
-            //policyVm.Id = policy.Id;
-            //policyVm.PolicyNumber = policy.PolicyNumber;
-            //policyVm.PolicyStatusName = policy.PolicyStatus.Name;
-            //policyVm.PolicyDate = policy.PolicyDate;
-            //policyVm.CustomerFullName = policy.Customer.Surname + " " + policy.Customer.Name;
             return policyVm;
         }
+
     }
 }

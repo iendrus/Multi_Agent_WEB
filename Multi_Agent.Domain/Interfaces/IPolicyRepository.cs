@@ -12,6 +12,8 @@ namespace Multi_Agent.Domain.Interfaces
     {
         IQueryable<Policy> GetAllActivePolicies();
         Policy GetPolicy(int policyId);
+
+
         IQueryable<Policy> GetPoliciesByTypeId(string typeId);
 
         void DeletePolicy(int policyId);

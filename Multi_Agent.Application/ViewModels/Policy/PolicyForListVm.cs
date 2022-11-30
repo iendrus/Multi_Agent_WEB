@@ -31,7 +31,9 @@ namespace Multi_Agent.Application.ViewModels.Policy
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Multi_Agent.Domain.Model.Policy, PolicyForListVm>()
-               .ForMember(d => d.CustomerFullName, opt => opt.MapFrom(s => s.Customer.Surname + " " + s.Customer.Name));
+                .ForMember(s => s.CustomerFullName, opt => opt.MapFrom(d => d.Customer.Surname  + " " 
+                    + d.Customer.Name + " " 
+                    + d.Customer.CompanyName ));
         }
 
     }

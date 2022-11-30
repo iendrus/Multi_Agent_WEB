@@ -38,10 +38,10 @@ namespace Multi_Agent.Web.Controllers
         //    return View();
         //}
 
-        //public IActionResult ViewPolicy(int policyId)
-        //{
-        //    var policyModel = _policyService.GetPolicyDetails(policyId);
-        //    return View(policyModel);
-        //}
+        public IActionResult ViewPolicy(int Id)
+        {
+            var model = _policyService.GetPolicyDetails(Id);
+            return View(model);
+        }
     }
 }
