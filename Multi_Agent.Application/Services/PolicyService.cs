@@ -43,20 +43,12 @@ namespace Multi_Agent.Application.Services
             throw new NotImplementedException();
         }
 
-        //public PolicyDetailsVm GetPolicyDetails(int policyId)
-        //{
-        //    var policy = _policyRepo.GetPolicy(policyId);
-        //    //metoda Map jest stosowana przy pojedynczym elemencje, natomiast ProjektTo przy kolekcjach
-        //    var policyVm = _mapper.Map<PolicyDetailsVm>(policy);
 
-        //    return policyVm;
-        //}
-
-        public PolicyForListVm GetPolicyDetails(int policyId)
+        public PolicyDetailsVm GetPolicyDetails(int policyId)
         {
             var policy = _policyRepo.GetPolicy(policyId);
             //metoda Map jest stosowana przy pojedynczym elemencje, natomiast ProjektTo przy kolekcjach
-            var policyVm = _mapper.Map<PolicyForListVm>(policy);
+            var policyVm = _mapper.Map<PolicyDetailsVm>(policy);
 
             return policyVm;
         }

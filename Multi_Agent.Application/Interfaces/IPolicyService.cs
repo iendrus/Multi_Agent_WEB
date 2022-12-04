@@ -12,11 +12,7 @@ namespace Multi_Agent.Application.Interfaces
         ListPolicyForListVm GetAllPoliciesForList();
 
         //int AddPolicy(NewPolicyVm policy);
-
-        //PolicyDetailsVm GetPolicyDetails(int policyId);
-        PolicyForListVm GetPolicyDetails(int policyId);
-
-
+        PolicyDetailsVm GetPolicyDetails(int policyId);
 
     }
 }

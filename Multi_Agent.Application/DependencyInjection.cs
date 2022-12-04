@@ -16,8 +16,9 @@ namespace Multi_Agent.Application
         //AddTransient - przy każdym uzyciu podowany jest nowy obiekt danego typu (są jeszcze AddScoped i AddSingleton)
         public static IServiceCollection AddApplication (this IServiceCollection services)
         {
-            services.AddTransient<IPolicyService, PolicyService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddTransient<IPolicyService, PolicyService>();
+            services.AddTransient<ICustomerService, CustomerService>();
             return services;
         }
     }

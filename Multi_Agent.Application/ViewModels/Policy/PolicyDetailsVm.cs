@@ -59,8 +59,7 @@ namespace Multi_Agent.Application.ViewModels.Policy
             profile.CreateMap<Multi_Agent.Domain.Model.Policy, PolicyDetailsVm>()
                 .ForMember(s => s.CustomerFullName, opt => opt.MapFrom(d => d.Customer.Surname + " "
                     + d.Customer.Name + " "
-                    + d.Customer.CompanyName))
-                .ForMember(s => s.PolicyStatusName, opt => opt.MapFrom(d => d.PolicyStatus.Name));
+                    + d.Customer.CompanyName));
 
         }
 

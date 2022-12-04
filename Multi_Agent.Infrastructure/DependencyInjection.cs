@@ -15,6 +15,7 @@ namespace Multi_Agent.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddTransient<IPolicyRepository, PolicyRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
             return services;
 
         }

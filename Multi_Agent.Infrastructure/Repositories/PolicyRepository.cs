@@ -1,4 +1,5 @@
-﻿using Multi_Agent.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Multi_Agent.Domain.Interfaces;
 using Multi_Agent.Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -39,16 +40,27 @@ namespace Multi_Agent.Infrastructure.Repositories
             return policies;
         }
 
+        //public Policy GetPolicy(int policyId)
+        //{
+        //    var policy = _context.Policies.FirstOrDefault(i => i.Id == policyId);
+        //    return policy;
+        //}
+
         public Policy GetPolicy(int policyId)
         {
-            var policy = _context.Policies.FirstOrDefault(i => i.Id == policyId); 
+            var policy = _context.Policies
+                .Include(p => p.Customer)
+                .Include(p => p.PolicyStatus)
+                .Include(p => p.PolicyType)
+                .Include(p => p.InsuranceCompany)
+                .Include(p => p.Agent)
+                .FirstOrDefault(p => p.Id == policyId);
             return policy;
         }
 
 
         public IQueryable<Policy> GetAllActivePolicies()
         {
-            //return _context.Policies.Where(p => p.IsActive == true);
             return _context.Policies;
         }
 
