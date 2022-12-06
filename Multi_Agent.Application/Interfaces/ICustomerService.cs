@@ -12,5 +12,8 @@ namespace Multi_Agent.Application.Interfaces
     {
         ListCustomerForListVm GetAllCustomersForList();
         CustomerForListVm GetCustomerDetails(int Id);
+        int AddCustomer(NewCustomerVm customer);
+
+
     }
 }

@@ -9,9 +9,10 @@ namespace Multi_Agent.Application.Interfaces
 {
     public interface IPolicyService
     {
-        ListPolicyForListVm GetAllPoliciesForList();
+        ListPolicyForListVm GetAllPoliciesForList(int pageSize, int pageNo, string searachString);
 
-        //int AddPolicy(NewPolicyVm policy);
+        int AddPolicy(NewPolicyVm policy);
+
         PolicyDetailsVm GetPolicyDetails(int policyId);
 
     }

@@ -24,23 +24,29 @@ namespace Multi_Agent.Application.Services
             _policyRepo = policyRepo;
             _mapper = mapper;
         }
-        public ListPolicyForListVm GetAllPoliciesForList()
+        public ListPolicyForListVm GetAllPoliciesForList(int pageSize, int pageNo, string searachString)
         {
             // metoda ProjectTo wykorzystuje zdefiniowane  mapowanie 
 
-            var policies = _policyRepo.GetAllActivePolicies()
+            var policies = _policyRepo.GetAllActivePolicies().Where(p => p.Customer.Surname.StartsWith(searachString))
                     .ProjectTo<PolicyForListVm>(_mapper.ConfigurationProvider).ToList();
+
+            var customerToShow = policies.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var policyList = new ListPolicyForListVm()
             {
-                Policies = policies,
+                PageSize = pageSize,
+                CurrentPage = pageNo,
+                SearchString = searachString,
+                Policies = customerToShow,
                 Count = policies.Count
             };
             return policyList;
         }
 
-        int AddPolicy(NewPolicyVm policy)
+        public int AddPolicy(NewPolicyVm policy)
         {
-            throw new NotImplementedException();
+            //zaimplementować
+            return policy.Id;
         }
 
 

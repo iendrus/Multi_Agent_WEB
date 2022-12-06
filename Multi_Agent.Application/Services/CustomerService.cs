@@ -4,6 +4,7 @@ using Multi_Agent.Application.Interfaces;
 using Multi_Agent.Application.ViewModels.Customer;
 using Multi_Agent.Application.ViewModels.Policy;
 using Multi_Agent.Domain.Interfaces;
+using Multi_Agent.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,14 @@ namespace Multi_Agent.Application.Services
             _mapper = mapper;   
 
         }
+
+        public int AddCustomer(NewCustomerVm customer)
+        {
+            var cust = _mapper.Map<Customer>(customer);
+            var id = _customerRepo.AddCustomer(cust);
+            return id;
+        }
+
         public ListCustomerForListVm GetAllCustomersForList()
         {
             var customers = _customerRepo.GetAllActiveCustomers()
