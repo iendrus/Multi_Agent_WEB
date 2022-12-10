@@ -61,6 +61,11 @@ namespace Multi_Agent.Web.Controllers
             return View();
         }
 
+        public IActionResult Create()
+        {
+            return RedirectToAction("AddPolicy");
+        }
+
         public IActionResult ViewPolicy(int Id)
         {
             var model = _policyService.GetPolicyDetails(Id);

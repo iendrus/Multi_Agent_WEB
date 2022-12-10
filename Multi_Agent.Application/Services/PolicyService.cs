@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore.Query;
 using Multi_Agent.Application.Interfaces;
+using Multi_Agent.Application.ViewModels.Customer;
 using Multi_Agent.Application.ViewModels.Policy;
 using Multi_Agent.Domain.Interfaces;
 using Multi_Agent.Domain.Model;
@@ -18,6 +19,7 @@ namespace Multi_Agent.Application.Services
     {
         private readonly IPolicyRepository _policyRepo;
         private readonly IMapper _mapper;
+
 
         public PolicyService(IPolicyRepository policyRepo, IMapper mapper)
         {
@@ -45,8 +47,10 @@ namespace Multi_Agent.Application.Services
 
         public int AddPolicy(NewPolicyVm policy)
         {
-            //zaimplementować
-            return policy.Id;
+                var p = _mapper.Map<Policy>(policy);
+                var id = _policyRepo.AddPolicy(p);
+                return id;
+            
         }
 
 
