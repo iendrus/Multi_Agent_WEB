@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Multi_Agent.Application.Interfaces;
 using Multi_Agent.Application.ViewModels.Policy;
 
@@ -7,9 +8,11 @@ namespace Multi_Agent.Web.Controllers
     public class PolicyController : Controller
     {
         private readonly IPolicyService _policyService;
-        public PolicyController(IPolicyService policyService)
+        private readonly ICustomerService _customerService;
+        public PolicyController(IPolicyService policyService, ICustomerService customerService)
         {
             _policyService = policyService;
+            _customerService = customerService;
         }
 
 
@@ -51,6 +54,8 @@ namespace Multi_Agent.Web.Controllers
         [HttpGet]
         public IActionResult AddPolicy()
         {
+           
+            ViewData["CustomerId"] = new SelectList(_customerService.GetAllCustomersForList().Customers, "Id", "FullName");
             return View(new NewPolicyVm());
         }
 
@@ -58,7 +63,7 @@ namespace Multi_Agent.Web.Controllers
         public IActionResult AddPolicy(NewPolicyVm model)
         {
             var id = _policyService.AddPolicy(model);
-            return View();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Create()

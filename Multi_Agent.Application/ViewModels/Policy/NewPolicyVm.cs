@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Multi_Agent.Application.Mapping;
 using Multi_Agent.Application.ViewModels.Customer;
 using Multi_Agent.Domain.Model;
 using System;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 
 namespace Multi_Agent.Application.ViewModels.Policy
 {
-    public class NewPolicyVm
+    public class NewPolicyVm:IMapFrom<Multi_Agent.Domain.Model.Policy>
     {
         public int Id { get; set; }
 

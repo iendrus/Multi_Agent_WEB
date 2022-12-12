@@ -46,7 +46,6 @@ namespace Multi_Agent.Application.Services
         }
 
 
-
         public CustomerForListVm GetCustomerDetails(int Id)
         {
             throw new NotImplementedException();
