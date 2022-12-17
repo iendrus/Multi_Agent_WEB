@@ -19,6 +19,9 @@ namespace Multi_Agent.Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddTransient<IPolicyService, PolicyService>();
             services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IInsuranceCompanyService, InsuranceCompanyService>();
+            services.AddTransient<IEmployeeService, EmployeeService>();
+
             return services;
         }
     }

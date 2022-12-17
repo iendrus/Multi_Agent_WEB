@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Multi_Agent.Application.Mapping;
+using Multi_Agent.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +35,18 @@ namespace Multi_Agent.Application.ViewModels.Customer
 
         public string? Nip { get; set; }
 
-        public DateTime CreatedAt { get; set; }  = DateTime.Now;
+        public DateTime CreatedAt { get; set; }
 
         public int CreatedBy { get; set; } = 1;
 
-        public bool ISActive { get; set; } = true;
+        public bool IsActive { get; set; } 
+
+        public NewCustomerVm()
+        {
+            CreatedAt = DateTime.Now;
+            CreatedBy = CommonService.GetCurrentUser();
+            IsActive = true;
+        }
 
         public void Mapping(Profile profile)
         {

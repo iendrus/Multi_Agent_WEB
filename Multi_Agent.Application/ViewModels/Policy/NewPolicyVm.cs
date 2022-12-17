@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Multi_Agent.Application.Mapping;
+using Multi_Agent.Application.Services;
 using Multi_Agent.Application.ViewModels.Customer;
 using Multi_Agent.Domain.Model;
 using System;
@@ -32,13 +33,12 @@ namespace Multi_Agent.Application.ViewModels.Policy
 
         public decimal PremiumPaid { get; set; }
 
-        //public DateTime? ModifiedAt { get; set; }
 
-        public bool? IsForeign { get; set; } = false;
-
+        public bool? IsForeign { get; set; } 
 
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+        public DateTime CreatedAt { get; set; } 
 
         public bool? IsActive { get; set; } = true;
 
@@ -63,10 +63,25 @@ namespace Multi_Agent.Application.ViewModels.Policy
 
         public int? ModifiedBy { get; set; }
 
+
+
         public ICollection<PolicyStatus> PolicyStatuses { get; set; }
 
         public IEnumerable<CustomerForListVm>  customers { get; set; }
-        
+
+
+        public NewPolicyVm()
+        {
+            CreatedAt = DateTime.Now;
+            CreatedBy = CommonService.GetCurrentUser();
+            IsActive = true;
+            IsForeign = false;
+            PolicyDateStart = DateTime.Today;
+            PolicyDate = DateTime.Today;
+            PolicyDateEnd = DateTime.Today;
+            Premium = 0;
+            PremiumPaid = 0;
+        }
 
         public void Mapping(Profile profile)
         {

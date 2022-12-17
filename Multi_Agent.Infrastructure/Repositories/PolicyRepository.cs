@@ -64,6 +64,18 @@ namespace Multi_Agent.Infrastructure.Repositories
             return _context.Policies;
         }
 
+        public IQueryable<PolicyStatus> GetAllActivePolicyStatuses()
+        {
+            return _context.PolicyStatuses;
+        }
 
+        public IQueryable<PolicyType> GetAllActivePolicyTypes()
+        {
+            return _context.PolicyTypes;
+        }
+        public IQueryable<PaymentType> GetAllActivePaymentTypes()
+        {
+            return _context.PaymentTypes;
+        }
     }
 }

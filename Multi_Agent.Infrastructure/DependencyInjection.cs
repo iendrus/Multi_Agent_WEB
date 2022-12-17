@@ -16,6 +16,8 @@ namespace Multi_Agent.Infrastructure
         {
             services.AddTransient<IPolicyRepository, PolicyRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IInsuranceCompanyRepository, InsuranceCompanyRepository>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             return services;
 
         }

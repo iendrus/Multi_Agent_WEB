@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.Identity.Client;
 using Multi_Agent.Application.Interfaces;
 using Multi_Agent.Application.ViewModels.Customer;
 using Multi_Agent.Application.ViewModels.Policy;
@@ -61,6 +62,27 @@ namespace Multi_Agent.Application.Services
             var policyVm = _mapper.Map<PolicyDetailsVm>(policy);
 
             return policyVm;
+        }
+
+        public List<PolicyStatusVm> GetAllPolicyStatusesForList()
+        {
+            var list = _policyRepo.GetAllActivePolicyStatuses().Where(p => p.IsActive == true)
+                   .ProjectTo<PolicyStatusVm>(_mapper.ConfigurationProvider).ToList();
+            return list;
+        }
+
+        public List<PolicyTypeVm> GetAllPolicyTypesForList()
+        {
+            var list = _policyRepo.GetAllActivePolicyTypes().Where(p => p.IsActive == true)
+                   .ProjectTo<PolicyTypeVm>(_mapper.ConfigurationProvider).ToList();
+            return list;
+        }
+
+        public List<PaymentTypeVm> GetAllPaymentTypesForList()
+        {
+            var list = _policyRepo.GetAllActivePaymentTypes().Where(p => p.IsActive == true)
+                   .ProjectTo<PaymentTypeVm>(_mapper.ConfigurationProvider).ToList();
+            return list;
         }
 
     }

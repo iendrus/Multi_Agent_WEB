@@ -4,104 +4,88 @@
     ViewData["Title"] = "AddPolicy";
 }
 
-<h1>AddPolicy</h1>
+<h1>Dodaj nową polisę</h1>
 
-<h4>NewPolicyVm</h4>
+<h4></h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AddPolicy">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CreatedAt" />
+        <input type="hidden" asp-for="CreatedBy" />
+        <input type="hidden" asp-for="IsActive" />
             <div class="form-group">
-                <label asp-for="PolicyNumber" class="control-label"></label>
+                <label class="control-label">Numer Polisy</label>
                 <input asp-for="PolicyNumber" class="form-control" />
                 <span asp-validation-for="PolicyNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RegistrationNumber" class="control-label"></label>
+                <label class="control-label">Numer rejestracyjny</label>
                 <input asp-for="RegistrationNumber" class="form-control" />
                 <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PolicyDate" class="control-label"></label>
+                <label class="control-label">Data Polisy</label>
                 <input asp-for="PolicyDate" class="form-control" />
                 <span asp-validation-for="PolicyDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PolicyDateStart" class="control-label"></label>
+                <label class="control-label">Okres polisy OD</label>
                 <input asp-for="PolicyDateStart" class="form-control" />
                 <span asp-validation-for="PolicyDateStart" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PolicyDateEnd" class="control-label"></label>
-                <input asp-for="PolicyDateEnd" class="form-control" />
+                <label class="control-label">Okres polisy DO</label>
+                <input asp-for="PolicyDateEnd" class="form-control"/>
                 <span asp-validation-for="PolicyDateEnd" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Premium" class="control-label"></label>
+                <label class="control-label">Przypis</label>
                 <input asp-for="Premium" class="form-control" />
                 <span asp-validation-for="Premium" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PremiumPaid" class="control-label"></label>
+                <label class="control-label">Inkaso</label>
                 <input asp-for="PremiumPaid" class="form-control" />
                 <span asp-validation-for="PremiumPaid" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IsForeign" class="control-label"></label>
-                <input asp-for="IsForeign" class="form-control" />
-                <span asp-validation-for="IsForeign" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsActive" class="control-label"></label>
-                <input asp-for="IsActive" class="form-control" />
-                <span asp-validation-for="IsActive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
+                <label class="control-label">Klient</label>
                 <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId">  </select>
             </div>
             <div class="form-group">
-                <label asp-for="InsuranceCompanyId" class="control-label"></label>
-                <input asp-for="InsuranceCompanyId" class="form-control" />
+                <label class="control-label">Towarzystwo ubezpieczeniowe</label>
+                <select asp-for="InsuranceCompanyId" class="form-control" asp-items="ViewBag.InsuranceCompanyId">  </select>
                 <span asp-validation-for="InsuranceCompanyId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PaymentTypeId" class="control-label"></label>
-                <input asp-for="PaymentTypeId" class="form-control" />
+                <label class="control-label">Rodzaj płatności</label>
+                <select asp-for="PaymentTypeId" class="form-control" asp-items="ViewBag.PaymentTypeId"> </select>
                 <span asp-validation-for="PaymentTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PolicyTypeId" class="control-label"></label>
-                <input asp-for="PolicyTypeId" class="form-control" />
+                <label class="control-label">Rodzaj polisy</label>
+                <select asp-for="PolicyTypeId" class="form-control" asp-items="ViewBag.PolicyTypeId"> </select>
                 <span asp-validation-for="PolicyTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PolicyStatusId" class="control-label"></label>
-                <input asp-for="PolicyStatusId" class="form-control" />
+                <label class="control-label">Status polisy</label>
+                <select asp-for="PolicyStatusId" class="form-control" asp-items="ViewBag.PolicyStatusId"> </select>
                 <span asp-validation-for="PolicyStatusId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AgentId" class="control-label"></label>
-                <input asp-for="AgentId" class="form-control" />
+                <select asp-for="AgentId" class="form-control" asp-items="ViewBag.AgentId"> </select>
                 <span asp-validation-for="AgentId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+@*            <div class="form-group">
                 <label asp-for="CreatedBy" class="control-label"></label>
                 <input asp-for="CreatedBy" class="form-control" />
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedBy" class="control-label"></label>
-                <input asp-for="ModifiedBy" class="form-control" />
-                <span asp-validation-for="ModifiedBy" class="text-danger"></span>
-            </div>
+            </div>*@
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

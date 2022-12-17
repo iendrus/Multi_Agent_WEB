@@ -11,6 +11,13 @@ namespace Multi_Agent.Domain.Interfaces
     public interface IPolicyRepository
     {
         IQueryable<Policy> GetAllActivePolicies();
+
+        public IQueryable<PolicyStatus> GetAllActivePolicyStatuses();
+
+        public IQueryable<PolicyType> GetAllActivePolicyTypes();
+
+        public IQueryable<PaymentType> GetAllActivePaymentTypes();
+
         Policy GetPolicy(int policyId);
 
 

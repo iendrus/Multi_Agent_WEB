@@ -15,5 +15,10 @@ namespace Multi_Agent.Application.Interfaces
 
         PolicyDetailsVm GetPolicyDetails(int policyId);
 
+        public List<PolicyStatusVm> GetAllPolicyStatusesForList();
+        public List<PolicyTypeVm> GetAllPolicyTypesForList();
+
+        public List<PaymentTypeVm> GetAllPaymentTypesForList();
+
     }
 }

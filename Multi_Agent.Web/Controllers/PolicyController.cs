@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Multi_Agent.Application.Interfaces;
+using Multi_Agent.Application.Services;
 using Multi_Agent.Application.ViewModels.Policy;
 
 namespace Multi_Agent.Web.Controllers
@@ -9,10 +10,15 @@ namespace Multi_Agent.Web.Controllers
     {
         private readonly IPolicyService _policyService;
         private readonly ICustomerService _customerService;
-        public PolicyController(IPolicyService policyService, ICustomerService customerService)
+        private readonly IInsuranceCompanyService _insuranceCompanyService;
+        private readonly IEmployeeService _employeeService;
+        public PolicyController(IPolicyService policyService, ICustomerService customerService,
+            IInsuranceCompanyService insuranceCompanyService, IEmployeeService employeeService)
         {
             _policyService = policyService;
             _customerService = customerService;
+            _insuranceCompanyService = insuranceCompanyService;
+            _employeeService = employeeService;
         }
 
 
@@ -54,10 +60,16 @@ namespace Multi_Agent.Web.Controllers
         [HttpGet]
         public IActionResult AddPolicy()
         {
-           
             ViewData["CustomerId"] = new SelectList(_customerService.GetAllCustomersForList().Customers, "Id", "FullName");
+            ViewData["PolicyStatusId"] = new SelectList(_policyService.GetAllPolicyStatusesForList(), "Id", "Name");
+            ViewData["PolicyTypeId"] = new SelectList(_policyService.GetAllPolicyTypesForList(), "Id", "Name");
+            ViewData["PaymentTypeId"] = new SelectList(_policyService.GetAllPaymentTypesForList(), "Id", "Name");
+            ViewData["InsuranceCompanyId"] = new SelectList(_insuranceCompanyService.GetAllInsuranceCompanyForList(), "Id", "Name");
+            ViewData["AgentId"] = new SelectList(_employeeService.GetActiveAgentsList(), "Id", "FullName");
             return View(new NewPolicyVm());
         }
+
+
 
         [HttpPost]
         public IActionResult AddPolicy(NewPolicyVm model)
