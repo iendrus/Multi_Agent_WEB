@@ -64,7 +64,7 @@ namespace Multi_Agent.Web.Controllers
             ViewData["PolicyStatusId"] = new SelectList(_policyService.GetAllPolicyStatusesForList(), "Id", "Name");
             ViewData["PolicyTypeId"] = new SelectList(_policyService.GetAllPolicyTypesForList(), "Id", "Name");
             ViewData["PaymentTypeId"] = new SelectList(_policyService.GetAllPaymentTypesForList(), "Id", "Name");
-            ViewData["InsuranceCompanyId"] = new SelectList(_insuranceCompanyService.GetAllInsuranceCompanyForList(), "Id", "Name");
+            ViewData["InsuranceCompanyId"] = new SelectList(_insuranceCompanyService.GetAllInsuranceCompanyForList().InsuranceCompanies, "Id", "Name");
             ViewData["AgentId"] = new SelectList(_employeeService.GetActiveAgentsList(), "Id", "FullName");
             return View(new NewPolicyVm());
         }

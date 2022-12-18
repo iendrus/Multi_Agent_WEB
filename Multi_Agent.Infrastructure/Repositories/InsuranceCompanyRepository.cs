@@ -21,9 +21,10 @@ namespace Multi_Agent.Infrastructure.Repositories
             return _context.InsuranceCompanies;
         }
 
-        public int AddInsuranceCompany(InsuranceCompany insuranceCompany)
+        public void AddInsuranceCompany(InsuranceCompany insuranceCompany)
         {
-            throw new NotImplementedException();
+            _context.InsuranceCompanies.Add(insuranceCompany);
+            _context.SaveChanges();
         }
 
 

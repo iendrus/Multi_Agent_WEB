@@ -3,6 +3,7 @@ using Multi_Agent.Application.Mapping;
 using Multi_Agent.Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,16 @@ namespace Multi_Agent.Application.ViewModels.Policy
         
         public string InsuranceCompanyName { get; set; }
         // ...?
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDateStart { get; set; }
+        
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDateEnd { get; set; }
+        
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDate { get; set; }
 
+        public decimal Premium { get; set; }
 
         public string PaymentTypeName { get; set; } 
 

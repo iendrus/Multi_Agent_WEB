@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Multi_Agent.Application.Interfaces;
+using Multi_Agent.Application.ViewModels.Customer;
 using Multi_Agent.Application.ViewModels.InsuranceCompany;
 using Multi_Agent.Application.ViewModels.Policy;
 using Multi_Agent.Domain.Interfaces;
@@ -15,25 +16,31 @@ namespace Multi_Agent.Application.Services
 {
     public class InsuranceCompanyService : IInsuranceCompanyService
     {
-        private readonly IInsuranceCompanyRepository _InsuranceCompanyRepo;
+        private readonly IInsuranceCompanyRepository _insuranceCompanyRepo;
         private readonly IMapper _mapper;
 
-        public InsuranceCompanyService(IInsuranceCompanyRepository InsuranceCompanyRepo, IMapper mapper)
+        public InsuranceCompanyService(IInsuranceCompanyRepository insuranceCompanyRepo, IMapper mapper)
         {
-            _InsuranceCompanyRepo = InsuranceCompanyRepo;
+            _insuranceCompanyRepo = insuranceCompanyRepo;
             _mapper = mapper;
                 
         }
 
-        public int AddInsuranceCompany(NewInsuranceCompanyVm insuranceCompany)
+        public void AddInsuranceCompany(NewInsuranceCompanyVm insCompany)
         {
-            throw new NotImplementedException();
+            var item = _mapper.Map<InsuranceCompany>(insCompany);
+            _insuranceCompanyRepo.AddInsuranceCompany(item);
         }
 
-        public List<InsuranceCompanyVm> GetAllInsuranceCompanyForList()
+        public ListInsuranceCompanyForListVm GetAllInsuranceCompanyForList()
         {
-            var list = _InsuranceCompanyRepo.GetAllActiveInsuranceCompany().Where(p => p.IsActive == true)
-                   .ProjectTo<InsuranceCompanyVm>(_mapper.ConfigurationProvider).ToList();
+            var insuranceCompanies = _insuranceCompanyRepo.GetAllActiveInsuranceCompany()
+                           .ProjectTo<InsuranceCompanyVm>(_mapper.ConfigurationProvider).ToList();
+            var list = new ListInsuranceCompanyForListVm()
+            {
+                InsuranceCompanies = insuranceCompanies,
+                Count = insuranceCompanies.Count
+            };
             return list;
         }
 

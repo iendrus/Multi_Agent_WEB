@@ -16,7 +16,7 @@ namespace Multi_Agent.Application.Interfaces
 
         EmployeeForListVm GetEmployeeDetails(int employeeId);
 
-        ListEmployeeForListVM GetAllEmployeesCustomersForList();
+        ListEmployeeForListVM GetAllEmployeesForList();
 
         List<EmployeeForListVm> GetActiveAgentsList();
 

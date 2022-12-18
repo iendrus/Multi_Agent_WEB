@@ -11,11 +11,11 @@ namespace Multi_Agent.Application.Interfaces
     public interface IInsuranceCompanyService
     {
 
-        int AddInsuranceCompany(NewInsuranceCompanyVm insuranceCompany);
+        void AddInsuranceCompany(NewInsuranceCompanyVm insuranceCompany);
 
         InsuranceCompanyVm GetInsuranceCompanyDetails(int insuranceCompanyId);
 
-        public List<InsuranceCompanyVm> GetAllInsuranceCompanyForList();
+        public ListInsuranceCompanyForListVm GetAllInsuranceCompanyForList();
 
     }
 }

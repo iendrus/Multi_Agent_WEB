@@ -12,6 +12,8 @@ namespace Multi_Agent.Application.ViewModels.Employee
     public class EmployeeForListVm : IMapFrom<Multi_Agent.Domain.Model.Employee>
     {
         public int Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
         public string FullName { get; set; }
         public string Position { get; set; }
         public string EmailAddress { get; set; }

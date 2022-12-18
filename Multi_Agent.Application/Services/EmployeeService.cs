@@ -27,7 +27,7 @@ namespace Multi_Agent.Application.Services
             _mapper = mapper;
         }
 
-        public ListEmployeeForListVM GetAllEmployeesCustomersForList()
+        public ListEmployeeForListVM GetAllEmployeesForList()
         {
             var employees = _eployeeRepo.GetAllActiveEmployee()
                 .ProjectTo<EmployeeForListVm>(_mapper.ConfigurationProvider).ToList();
@@ -57,16 +57,6 @@ namespace Multi_Agent.Application.Services
                    .ProjectTo<EmployeeForListVm>(_mapper.ConfigurationProvider).ToList();
             return list;
         }
-
-
-
-
-        //public List<EmployeeForListVm> GetActiveAgentsList()
-        //{
-        //    var list = _eployeeRepo.GetAllActiveEmployee().Where(p => p.IsActive == true)
-        //           .ProjectTo<EmployeeForListVm>(_mapper.ConfigurationProvider).ToList();
-        //    return list;
-        //}
 
 
         public EmployeeForListVm GetEmployeeDetails(int employeeId)

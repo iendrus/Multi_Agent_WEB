@@ -40,11 +40,6 @@ namespace Multi_Agent.Infrastructure.Repositories
             return policies;
         }
 
-        //public Policy GetPolicy(int policyId)
-        //{
-        //    var policy = _context.Policies.FirstOrDefault(i => i.Id == policyId);
-        //    return policy;
-        //}
 
         public Policy GetPolicy(int policyId)
         {
@@ -54,6 +49,8 @@ namespace Multi_Agent.Infrastructure.Repositories
                 .Include(p => p.PolicyType)
                 .Include(p => p.InsuranceCompany)
                 .Include(p => p.Agent)
+                .Include(p => p.CreatedByNavigation)
+                .Include(p => p.ModifiedByNavigation)
                 .FirstOrDefault(p => p.Id == policyId);
             return policy;
         }

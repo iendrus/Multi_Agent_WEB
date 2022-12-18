@@ -28,7 +28,7 @@
                         Nazwa Klienta
                     </th>
                     <th>
-                        Nazwa Towarzystwa
+                        Nazwa Towarzystwa ubezpieczeniowego
                     </th>
                     <th>
                         Status polisy
@@ -37,10 +37,13 @@
                         Rodzaj polisy
                     </th>
                     <th>
-                        Data od
+                        Przypis
                     </th>
                     <th>
-                        Data do
+                        Okres polisy od
+                    </th>
+                    <th>
+                        Okres polisy do
                     </th>
                     <th>
                         Rodzaj płatności
@@ -72,6 +75,9 @@
                             @Html.DisplayFor(modelItem => item.PolicyTypeName)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.Premium)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.PolicyDateStart)
                         </td>
                         <td>
@@ -94,12 +100,12 @@
     <div class="row">
         <table>
             <tr>
-                @for(int i = 1; i <=Math.Ceiling(Model.Count /(double)Model.PageSize);i++)
+                @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
                 {
                     <td>
-                        @if( i != Model.CurrentPage)
+                        @if (i != Model.CurrentPage)
                         {
-                            <a href= "javascript:PagerClick(@i)">@i</a>
+                            <a href="javascript:PagerClick(@i)">@i</a>
                         }
                         else
                         {
@@ -110,21 +116,20 @@
                 }
             </tr>
         </table>
-        <input type="hidden" name="pageNo" id="pageNo"/>
-        <input type="hidden" name="pageSize" id="pageSize" value="8"/>
+        <input type="hidden" name="pageNo" id="pageNo" />
+        <input type="hidden" name="pageSize" id="pageSize" value="8" />
     </div>
 
 </form>
 
 @section Scripts
-{
+    {
     <script type="text/javascript">
-        function PagerClick(index)
-        {
+        function PagerClick(index) {
             document.getElementById("pageNo").value = index;
             document.forms[0].submit();
         }
-        
+
     </script>
 
 }

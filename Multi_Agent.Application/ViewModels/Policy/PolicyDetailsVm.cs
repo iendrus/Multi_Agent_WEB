@@ -19,8 +19,6 @@ namespace Multi_Agent.Application.ViewModels.Policy
 
         public string? RegistrationNumber { get; set; }
 
-        public string InsuranceCompanyId { get; set; } = null!;
-
 
         public DateTime PolicyDate { get; set; }
 
@@ -37,11 +35,11 @@ namespace Multi_Agent.Application.ViewModels.Policy
 
         public bool? IsForeign { get; set; }
 
-        public int CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
         public DateTime? ModifiedAt { get; set; }
 
-        public int? ModifiedBy { get; set; }
+        public string ModifiedBy { get; set; }
 
         public string PolicyTypeName { get; set; }
 
@@ -59,7 +57,11 @@ namespace Multi_Agent.Application.ViewModels.Policy
             profile.CreateMap<Multi_Agent.Domain.Model.Policy, PolicyDetailsVm>()
                 .ForMember(s => s.CustomerFullName, opt => opt.MapFrom(d => d.Customer.Surname + " "
                     + d.Customer.Name + " "
-                    + d.Customer.CompanyName));
+                    + d.Customer.CompanyName))
+                .ForMember(s => s.AgentFullName, opt => opt.MapFrom(d => d.Agent.Surname + " " + d.Agent.Name))
+                .ForMember(s => s.CreatedBy, opt => opt.MapFrom(d => d.CreatedByNavigation.Surname + " " + d.CreatedByNavigation.Name))
+                .ForMember(s => s.ModifiedBy, opt => opt.MapFrom(d => d.ModifiedByNavigation.Surname + " " + d.ModifiedByNavigation.Name))
+                ;
 
         }
 

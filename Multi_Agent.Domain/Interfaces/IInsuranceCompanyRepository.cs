@@ -14,6 +14,6 @@ namespace Multi_Agent.Domain.Interfaces
 
 
         //void DeleteCustomer(int Id);
-        int AddInsuranceCompany(InsuranceCompany insuranceCompany);
+        void AddInsuranceCompany(InsuranceCompany insuranceCompany);
     }
 }
