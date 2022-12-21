@@ -20,5 +20,10 @@ namespace Multi_Agent.Application.Interfaces
 
         List<EmployeeForListVm> GetActiveAgentsList();
 
+        int AddEmployee(NewEmployeeVm employee);
+        NewEmployeeVm GetEmployeeForEdit(int id);
+
+        void UpdateEmployee(NewEmployeeVm model);
+
     }
 }

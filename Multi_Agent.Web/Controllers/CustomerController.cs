@@ -31,11 +31,37 @@ namespace Multi_Agent.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddCustomer(NewCustomerVm model)
         {
-            var id = _customerService.AddCustomer(model);
-            return RedirectToAction("Index");
+            if(ModelState.IsValid)
+            { 
+                var id = _customerService.AddCustomer(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
+
+        [HttpGet]
+        public IActionResult EditCustomer(int id)
+        {
+            var customer = _customerService.GetCustomerForEdit(id);
+            return View(customer);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditCustomer(NewCustomerVm model)
+        {
+            if (ModelState.IsValid)
+            {
+                _customerService.UpdateCustomer(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+
 
         public IActionResult Create()
         {

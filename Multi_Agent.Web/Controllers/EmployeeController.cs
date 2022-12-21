@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Multi_Agent.Application.Interfaces;
+using Multi_Agent.Application.Services;
+using Multi_Agent.Application.ViewModels.Customer;
+using Multi_Agent.Application.ViewModels.Employee;
 
 namespace Multi_Agent.Web.Controllers
 {
@@ -25,24 +28,22 @@ namespace Multi_Agent.Web.Controllers
         }
 
         // GET: EmployeeController/Create
-        public ActionResult Create()
+        public ActionResult AddEmployee()
         {
-            return View();
+            return View(new NewEmployeeVm());
         }
 
         // POST: EmployeeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult AddEmployee(NewEmployeeVm model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var id = _employeeService.AddEmployee(model);
+                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
 
         // GET: EmployeeController/Edit/5
@@ -85,6 +86,12 @@ namespace Multi_Agent.Web.Controllers
             {
                 return View();
             }
+        }
+
+
+        public IActionResult Create()
+        {
+            return RedirectToAction("AddEmployee");
         }
     }
 }

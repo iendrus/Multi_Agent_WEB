@@ -46,11 +46,24 @@ namespace Multi_Agent.Application.Services
         }
 
 
-        public CustomerForListVm GetCustomerDetails(int Id)
+        public CustomerDetailsVm GetCustomerDetails(int Id)
         {
-            throw new NotImplementedException();
+            var customer = _customerRepo.GetCustomer(Id);
+            var customerVm = _mapper.Map<CustomerDetailsVm>(customer);
+            return customerVm;
         }
 
+        public NewCustomerVm GetCustomerForEdit(int id)
+        {
+            var customer = _customerRepo.GetCustomer(id);
+            var customerVm = _mapper.Map<NewCustomerVm>(customer);
+            return customerVm;
+        }
 
+        public void UpdateCustomer(NewCustomerVm model)
+        {
+            var customer = _mapper.Map<Customer>(model);
+            _customerRepo.UpdateCustomer(customer);
+        }
     }
 }

@@ -1,24 +1,21 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Multi_Agent.Application.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Multi_Agent.Application.Services
 {
-    public static class CommonService //<T> where T : class
+    public static class CommonService
     {
-        //private static T _item { get; set; }
-        public static DateTime CreatedAt;
-        public static int CreatedBy;
-        public static bool IsActive;
-        
-
 
         public static int GetCurrentUser()
         {
             return 1;
         }
+
     }
 }

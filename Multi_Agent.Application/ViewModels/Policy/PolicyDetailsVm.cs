@@ -2,6 +2,8 @@
 using Multi_Agent.Application.Mapping;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -15,39 +17,58 @@ namespace Multi_Agent.Application.ViewModels.Policy
 
         public int CustomerId { get; set; }
 
+        [DisplayName("Numer polisy")]
         public string PolicyNumber { get; set; } = null!;
 
+        [DisplayName("Numer rejestracyjny")]
         public string? RegistrationNumber { get; set; }
 
-
+        [DisplayName("Data polisy")]
         public DateTime PolicyDate { get; set; }
 
+        [DisplayName("Początek okresu obowiązywania")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDateStart { get; set; }
-
+        
+        [DisplayName("Koniec okresu obowiązywania")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDateEnd { get; set; }
 
-
+        [DisplayName("Przypis")]
         public decimal Premium { get; set; }
 
+        [DisplayName("Inkaso")]
         public decimal PremiumPaid { get; set; }
 
+        [DisplayName("Data utworzenia")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime CreatedAt { get; set; }
 
+        [DisplayName("Polisa obca")]
         public bool? IsForeign { get; set; }
-
+        
+        [DisplayName("Utwrozył")]
         public string CreatedBy { get; set; }
 
+        [DisplayName("Data modyfikacji")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime? ModifiedAt { get; set; }
-
+        
+        [DisplayName("Zmodyfikował")]
         public string ModifiedBy { get; set; }
 
+        [DisplayName("Rodzaj polisy")]
         public string PolicyTypeName { get; set; }
 
+        [DisplayName("Status polisy")]
         public string PolicyStatusName { get; set; }
 
+        [DisplayName("Nazwa Klienta")]
         public string CustomerFullName { get; set; } = null!;
+        
+        [DisplayName("Agent")]
         public string AgentFullName { get; set; }
-
+        [DisplayName("Towarzystwo Ubezpieczeniowe")]
         public string InsuranceCompanyName { get; set; }
 
 

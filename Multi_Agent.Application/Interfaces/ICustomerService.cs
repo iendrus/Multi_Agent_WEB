@@ -1,4 +1,5 @@
-﻿using Multi_Agent.Application.ViewModels.Customer;
+﻿using AutoMapper.Configuration.Conventions;
+using Multi_Agent.Application.ViewModels.Customer;
 using Multi_Agent.Application.ViewModels.Policy;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,11 @@ namespace Multi_Agent.Application.Interfaces
     public interface ICustomerService
     {
         ListCustomerForListVm GetAllCustomersForList();
-        CustomerForListVm GetCustomerDetails(int Id);
+        CustomerDetailsVm GetCustomerDetails(int Id);
         int AddCustomer(NewCustomerVm customer);
+        NewCustomerVm GetCustomerForEdit(int id);
+
+        void UpdateCustomer(NewCustomerVm model);
 
 
     }

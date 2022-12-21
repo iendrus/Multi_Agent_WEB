@@ -1,4 +1,5 @@
-﻿using Multi_Agent.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Multi_Agent.Domain.Interfaces;
 using Multi_Agent.Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,30 @@ namespace Multi_Agent.Infrastructure.Repositories
         }
         public int AddEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            initilalizeFields(employee, "add");
+            _context.Employees.Add(employee);
+            _context.SaveChanges();
+            return employee.Id;
         }
+
+        private Employee initilalizeFields(Employee employee, string operation)
+        {
+            var item = employee;
+            switch (operation)
+            {
+                case "add":
+                    item.CreatedAt = DateTime.Now;
+                    item.CreatedBy = 1;
+                    item.IsActive = true;
+                    break;
+                case "edit":
+                    item.ModifiedAt = DateTime.Now;
+                    item.ModifiedBy = 2;
+                    break;
+            }
+            return item;
+        }
+
 
         public IQueryable<Employee> GetAllActiveEmployee()
         {
@@ -39,7 +62,11 @@ namespace Multi_Agent.Infrastructure.Repositories
 
         public Employee GetEmployee(int Id)
         {
-            throw new NotImplementedException();
+            var employee = _context.Employees
+                .Include(x => x.CreatedByNavigation)
+                .Include(x => x.ModifiedByNavigation)
+                .FirstOrDefault(x => x.Id == Id);
+            return employee;
         }
     }
 }

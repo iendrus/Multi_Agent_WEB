@@ -16,12 +16,16 @@ namespace Multi_Agent.Application.ViewModels.Customer
         public string? FullName { get; set; }
 
         public string? FullAddress { get; set; }
+        
+        public string? Pesel { get; set; }
 
-        public bool? IsHousehold { get; set; }
+        public string? Nip { get; set; }
 
         public string? EmailAddress { get; set; }
 
         public string? PhoneNumber { get; set; }
+
+
 
         public void Mapping(Profile profile)
         {

@@ -29,16 +29,18 @@ namespace Multi_Agent.Infrastructure.Repositories
 
         public int AddCustomer(Customer customer)
         {
+            initilalizeFields(customer, "add");
             _context.Customers.Add(customer);
             _context.SaveChanges();
             return customer.Id;
         }
 
-
         public Customer GetCustomer(int customerId)
         {
             var customer = _context.Customers
-                 .FirstOrDefault(p => p.Id == customerId);
+                .Include(c => c.CreatedByNavigation)
+                .Include(c => c.ModifiedByNavigation)
+                .FirstOrDefault(p => p.Id == customerId);
             return customer;
         }
 
@@ -48,6 +50,29 @@ namespace Multi_Agent.Infrastructure.Repositories
             return _context.Customers;
         }
 
+        public void UpdateCustomer(Customer customer)
+        {
+            initilalizeFields(customer, "edit");
+            _context.Update(customer);
+            _context.SaveChanges();
+        }
 
+        private Customer initilalizeFields(Customer customer, string operation)
+        {
+            var item = customer;
+            switch (operation)
+            {
+                case "add":
+                    item.CreatedAt = DateTime.Now;
+                    item.CreatedBy = 1;
+                    item.IsActive = true;
+                    break;
+                case "edit":
+                    item.ModifiedAt = DateTime.Now;
+                    item.ModifiedBy = 2;
+                    break;
+            }
+            return item;
+        }
     }
 }

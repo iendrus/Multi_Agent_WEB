@@ -17,19 +17,19 @@ namespace Multi_Agent.Application.Services
 {
     public class EmployeeService : IEmployeeService
     {
-        private readonly IEmployeeRepository _eployeeRepo;
+        private readonly IEmployeeRepository _employeeRepo;
         private readonly IMapper _mapper;
 
 
-        public EmployeeService(IEmployeeRepository eployeeRepo, IMapper mapper)
+        public EmployeeService(IEmployeeRepository employeeRepo, IMapper mapper)
         {
-            _eployeeRepo = eployeeRepo;
+            _employeeRepo = employeeRepo;
             _mapper = mapper;
         }
 
         public ListEmployeeForListVM GetAllEmployeesForList()
         {
-            var employees = _eployeeRepo.GetAllActiveEmployee()
+            var employees = _employeeRepo.GetAllActiveEmployee()
                 .ProjectTo<EmployeeForListVm>(_mapper.ConfigurationProvider).ToList();
             var employeeList = new ListEmployeeForListVM()
             {
@@ -41,10 +41,10 @@ namespace Multi_Agent.Application.Services
 
         public List<EmployeeForListVm> GetActiveAgentsList()
         {
-            var list = (from e in _eployeeRepo.GetAllActiveEmployee()
+            var list = (from e in _employeeRepo.GetAllActiveEmployee()
 
-                            join ur in _eployeeRepo.GetAllEmployeUserRole() on e.Id equals ur.EmployeeId
-                            join r in _eployeeRepo.GetAllUserRole() on ur.UserRoleId equals r.Id
+                            join ur in _employeeRepo.GetAllEmployeUserRole() on e.Id equals ur.EmployeeId
+                            join r in _employeeRepo.GetAllUserRole() on ur.UserRoleId equals r.Id
                             where r.Id == "AG"
                         select new EmployeeForListVm()
                         {
@@ -60,6 +60,23 @@ namespace Multi_Agent.Application.Services
 
 
         public EmployeeForListVm GetEmployeeDetails(int employeeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddEmployee(NewEmployeeVm employee)
+        {
+            var empl = _mapper.Map<Employee>(employee);
+            var id = _employeeRepo.AddEmployee(empl);
+            return id;
+        }
+
+        public NewEmployeeVm GetEmployeeForEdit(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateEmployee(NewEmployeeVm model)
         {
             throw new NotImplementedException();
         }

@@ -13,6 +13,9 @@ namespace Multi_Agent.Infrastructure
     {
         public Context()
         {
+
+
+
         }
 
         public Context(DbContextOptions<Context> options)
@@ -491,6 +494,8 @@ namespace Multi_Agent.Infrastructure
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+
 
 
     }

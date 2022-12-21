@@ -22,46 +22,53 @@
                 Adres zamieszkania
             </th>
             <th>
+                PESEL
+            </th>
+            <th>
+                NIP
+            </th>
+            <th>
                 Adres email
             </th>
             <th>
                 Numer telefonu
-            </th>
-            <th>
-                Czy konsument
             </th>
 
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Customers) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>            
-            <td>
-                @Html.DisplayFor(modelItem => item.FullAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsHousehold)
-            </td>
+        @foreach (var item in Model.Customers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pesel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.ActionLink("Edit", "EditCustomer", new { id=item.Id  }) |
+                    @Html.ActionLink("Details", "ViewCustomer", new { id=item.Id  }) |
+                    @Html.ActionLink("Delete", "DeleteCustomer", new { id=item.Id })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

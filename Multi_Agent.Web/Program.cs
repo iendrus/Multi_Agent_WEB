@@ -1,6 +1,9 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Multi_Agent.Application;
+using Multi_Agent.Application.ViewModels.Customer;
 using Multi_Agent.Domain.Interfaces;
 using Multi_Agent.Infrastructure;
 using Multi_Agent.Infrastructure.Repositories;
@@ -16,11 +19,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<Context>();
-builder.Services.AddControllersWithViews();
 
-//builder.Services.AddTransient<IPolicyRepository, PolicyRepository>();
+
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
+
+
 
 var app = builder.Build();
 
