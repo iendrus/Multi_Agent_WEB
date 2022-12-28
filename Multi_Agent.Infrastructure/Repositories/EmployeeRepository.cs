@@ -47,17 +47,17 @@ namespace Multi_Agent.Infrastructure.Repositories
 
         public IQueryable<Employee> GetAllActiveEmployee()
         {
-            return _context.Employees;
+            return _context.Employees.Where(p => p.IsActive == true);
         }
 
         public IQueryable<EmployeeUserRole> GetAllEmployeUserRole()
         {
-            return _context.EmployeeUserRoles;
+            return _context.EmployeeUserRoles.Where(p => p.IsActive == true);
         }
 
         public IQueryable<UserRole> GetAllUserRole()
         {
-            return _context.UserRoles;
+            return _context.UserRoles.Where(p => p.IsActive == true);
         }
 
         public Employee GetEmployee(int Id)

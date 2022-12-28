@@ -15,8 +15,6 @@ namespace Multi_Agent.Application.ViewModels.Policy
     {
         public int Id { get; set; }
 
-        public int CustomerId { get; set; }
-
         [DisplayName("Numer polisy")]
         public string PolicyNumber { get; set; } = null!;
 
@@ -24,13 +22,14 @@ namespace Multi_Agent.Application.ViewModels.Policy
         public string? RegistrationNumber { get; set; }
 
         [DisplayName("Data polisy")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDate { get; set; }
 
-        [DisplayName("Początek okresu obowiązywania")]
+        [DisplayName("Początek polisy")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDateStart { get; set; }
         
-        [DisplayName("Koniec okresu obowiązywania")]
+        [DisplayName("Koniec polisy")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDateEnd { get; set; }
 
@@ -70,6 +69,9 @@ namespace Multi_Agent.Application.ViewModels.Policy
         public string AgentFullName { get; set; }
         [DisplayName("Towarzystwo Ubezpieczeniowe")]
         public string InsuranceCompanyName { get; set; }
+
+        [DisplayName("Rodzaj płatności")]
+        public string PaymentTypeName { get; set; }
 
 
 

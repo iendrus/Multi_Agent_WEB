@@ -28,7 +28,7 @@ namespace Multi_Agent.Application.ViewModels.Customer
         public string? CompanyName { get; set; }
         
         [DisplayName("Konsument")]
-        public bool? IsHousehold { get; set; }
+        public bool IsHousehold { get; set; }
         
         [DisplayName("Adres email")]
         public string? EmailAddress { get; set; }
@@ -57,6 +57,7 @@ namespace Multi_Agent.Application.ViewModels.Customer
 
         public int? ModifiedBy { get; set; }
 
+        [DisplayName("Czy aktywny")]
         public bool IsActive { get; set; }
 
         public NewCustomerVm()

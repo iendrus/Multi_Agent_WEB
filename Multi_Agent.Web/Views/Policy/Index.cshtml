@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Kartoteka Polis</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Dodaj polisę</a>
 </p>
 <form asp-action="Index" asp-controller="Policy" method="post">
     <div class="row">
@@ -88,9 +88,8 @@
                         </td>
 
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            @Html.ActionLink("Szczegóły", "ViewPolicy", new {  id=item.Id  }) |
+                            @Html.ActionLink("Usuń", "DeletePolicy", new {  id=item.Id  })
                         </td>
                     </tr>
                 }

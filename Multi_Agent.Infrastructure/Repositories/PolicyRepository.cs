@@ -47,6 +47,7 @@ namespace Multi_Agent.Infrastructure.Repositories
                 .Include(p => p.Customer)
                 .Include(p => p.PolicyStatus)
                 .Include(p => p.PolicyType)
+                .Include(p => p.PaymentType)
                 .Include(p => p.InsuranceCompany)
                 .Include(p => p.Agent)
                 .Include(p => p.CreatedByNavigation)
@@ -58,21 +59,21 @@ namespace Multi_Agent.Infrastructure.Repositories
 
         public IQueryable<Policy> GetAllActivePolicies()
         {
-            return _context.Policies;
+            return _context.Policies.Where(p => p.IsActive == true);
         }
 
         public IQueryable<PolicyStatus> GetAllActivePolicyStatuses()
         {
-            return _context.PolicyStatuses;
+            return _context.PolicyStatuses.Where(p => p.IsActive == true);
         }
 
         public IQueryable<PolicyType> GetAllActivePolicyTypes()
         {
-            return _context.PolicyTypes;
+            return _context.PolicyTypes.Where(p => p.IsActive == true);
         }
         public IQueryable<PaymentType> GetAllActivePaymentTypes()
         {
-            return _context.PaymentTypes;
+            return _context.PaymentTypes.Where(p => p.IsActive == true);
         }
     }
 }

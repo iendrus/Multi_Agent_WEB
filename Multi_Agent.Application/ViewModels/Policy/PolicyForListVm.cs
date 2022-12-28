@@ -27,14 +27,14 @@ namespace Multi_Agent.Application.ViewModels.Policy
         [DisplayName("Nazwa Klienta")]
         public string CustomerFullName { get; set; }
 
-        [DisplayName("Towarzystwo Ubezpiczeniowe")]
+        [DisplayName("Towarzystwo Ubezpieczeniowe")]
         public string InsuranceCompanyName { get; set; }
         
-        [DisplayName("Początek okresu obowiązywania")]
+        [DisplayName("Początek polisy")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDateStart { get; set; }
 
-        [DisplayName("Koniec okresu obowiązywania")]
+        [DisplayName("Koniec polisy")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDateEnd { get; set; }
 

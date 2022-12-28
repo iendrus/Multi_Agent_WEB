@@ -47,7 +47,7 @@ namespace Multi_Agent.Infrastructure.Repositories
 
         public IQueryable<Customer> GetAllActiveCustomers()
         {
-            return _context.Customers;
+            return _context.Customers.Where(p => p.IsActive == true);
         }
 
         public void UpdateCustomer(Customer customer)

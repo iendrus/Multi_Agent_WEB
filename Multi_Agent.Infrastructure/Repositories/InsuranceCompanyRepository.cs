@@ -18,7 +18,7 @@ namespace Multi_Agent.Infrastructure.Repositories
 
         public IQueryable<InsuranceCompany> GetAllActiveInsuranceCompany()
         {
-            return _context.InsuranceCompanies;
+            return _context.InsuranceCompanies.Where(p => p.IsActive == true);
         }
 
         public void AddInsuranceCompany(InsuranceCompany insuranceCompany)

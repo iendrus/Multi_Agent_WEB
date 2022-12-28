@@ -6,6 +6,8 @@ using Multi_Agent.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,54 +17,58 @@ namespace Multi_Agent.Application.ViewModels.Policy
 {
     public class NewPolicyVm:IMapFrom<Multi_Agent.Domain.Model.Policy>
     {
+
         public int Id { get; set; }
 
-
-
+        [DisplayName("Numer polisy")]
         public string PolicyNumber { get; set; } = null!;
 
+        [DisplayName("Numer rejestracyjny")]
         public string? RegistrationNumber { get; set; }
 
+        [DisplayName("Data polisy")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDate { get; set; }
 
+        [DisplayName("Początek polisy")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDateStart { get; set; }
 
+        [DisplayName("Koniec polisy")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PolicyDateEnd { get; set; }
 
+        [DisplayName("Przypis")]
         public decimal Premium { get; set; }
 
+        [DisplayName("Inkaso")]
         public decimal PremiumPaid { get; set; }
 
+        [DisplayName("Data utworzenia")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTime CreatedAt { get; set; }
 
-        public bool? IsForeign { get; set; } 
+        [DisplayName("Polisa obca")]
+        public bool? IsForeign { get; set; }
 
-
-
-        public DateTime CreatedAt { get; set; } 
-
-        public bool? IsActive { get; set; } = true;
-
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// 
-        public int CustomerId { get; set; }
-        public string InsuranceCompanyId { get; set; } = null!;
-
-        public string PaymentTypeId { get; set; } = null!;
-
-        public string PolicyTypeId { get; set; } = null!;
-
-        public string PolicyStatusId { get; set; } = null!;
-
-        public int AgentId { get; set; }
-
+        [DisplayName("Utwrozył")]
         public int CreatedBy { get; set; }
 
-        public int? ModifiedBy { get; set; }
+        public bool? IsActive { get; set; } //= true;
+        [DisplayName("Klient")]
+        public int CustomerId { get; set; }
 
+        [DisplayName("Towarzystwo")]
+        public string InsuranceCompanyId { get; set; }
+
+        [DisplayName("Rodzaj płatności")]
+        public string PaymentTypeId { get; set; }
+        [DisplayName("Typ polisy")]
+        public string PolicyTypeId { get; set; }
+        [DisplayName("Status polisy")]
+        public string PolicyStatusId { get; set; }
+        [DisplayName("Agent")]
+        public int AgentId { get; set; }
 
 
         public ICollection<PolicyStatus> PolicyStatuses { get; set; }
