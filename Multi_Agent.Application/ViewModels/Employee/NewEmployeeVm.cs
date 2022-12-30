@@ -3,9 +3,11 @@ using Multi_Agent.Application.Mapping;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Multi_Agent.Application.ViewModels.Employee
 {
@@ -46,7 +48,7 @@ namespace Multi_Agent.Application.ViewModels.Employee
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<NewEmployeeVm, Multi_Agent.Domain.Model.Employee>();
+            profile.CreateMap<NewEmployeeVm, Multi_Agent.Domain.Model.Employee>().ReverseMap();
 
         }
 

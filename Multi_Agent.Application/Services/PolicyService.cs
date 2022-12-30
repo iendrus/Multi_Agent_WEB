@@ -46,14 +46,6 @@ namespace Multi_Agent.Application.Services
             return policyList;
         }
 
-        public int AddPolicy(NewPolicyVm policy)
-        {
-                var p = _mapper.Map<Policy>(policy);
-                var id = _policyRepo.AddPolicy(p);
-                return id;
-            
-        }
-
 
         public PolicyDetailsVm GetPolicyDetails(int policyId)
         {
@@ -85,5 +77,34 @@ namespace Multi_Agent.Application.Services
             return list;
         }
 
+        public int AddPolicy(NewPolicyVm policy)
+        {
+            var p = _mapper.Map<Policy>(policy);
+            var id = _policyRepo.AddPolicy(p);
+            return id;
+
+        }
+
+        public NewPolicyVm GetPolicyForEdit(int id)
+        {
+            var policy = _policyRepo.GetPolicy(id);
+            var policyVm = _mapper.Map<NewPolicyVm>(policy);
+            return policyVm;
+        }
+
+
+        public void UpdatePolicy(NewPolicyVm model)
+        {
+            var policy = _mapper.Map<Policy>(model);
+            if (policy != null)
+            {
+                _policyRepo.UpdatePolicy(policy);
+            }
+        }
+
+        public void DeletePolicy(int id)
+        {
+            _policyRepo.DeletePolicy(id);   
+        }
     }
 }

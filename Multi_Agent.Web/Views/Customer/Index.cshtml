@@ -7,7 +7,7 @@
 <h1>Ewidecja Klientów</h1>
 
 <p>
-    <a asp-action="Create">Dodaj Klienta</a>
+    <a asp-action="AddCustomer">Dodaj Klienta</a>
 </p>
 <table class="table">
     <thead>
@@ -65,7 +65,8 @@
 
                 <td>
                     @Html.ActionLink("Szczegóły", "ViewCustomer", new { id=item.Id  }) |
-                    @Html.ActionLink("Usuń", "DeleteCustomer", new { id=item.Id })
+                    @Html.ActionLink("Usuń", "DeleteCustomer", new { id=item.Id },
+                new { onclick = "return confirm('Czy napewno chcesz usunąć Klienta Id: " + @item.Id + "?')" })
                 </td>
             </tr>
         }

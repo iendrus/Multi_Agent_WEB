@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Multi_Agent.Application.Interfaces;
 using Multi_Agent.Application.ViewModels.Customer;
+using Multi_Agent.Application.ViewModels.Employee;
 using Multi_Agent.Application.ViewModels.InsuranceCompany;
 using Multi_Agent.Application.ViewModels.Policy;
 using Multi_Agent.Domain.Interfaces;
@@ -32,6 +33,7 @@ namespace Multi_Agent.Application.Services
             _insuranceCompanyRepo.AddInsuranceCompany(item);
         }
 
+
         public ListInsuranceCompanyForListVm GetAllInsuranceCompanyForList()
         {
             var insuranceCompanies = _insuranceCompanyRepo.GetAllActiveInsuranceCompany()
@@ -44,10 +46,35 @@ namespace Multi_Agent.Application.Services
             return list;
         }
 
-        public InsuranceCompanyVm GetInsuranceCompanyDetails(int insuranceCompanyId)
+        public InsuranceCompanyVm GetInsuranceCompanyDetails(string id)
         {
-            throw new NotImplementedException();
+            var item = _insuranceCompanyRepo.GetInsuranceCompany(id);
+            var vm = _mapper.Map<InsuranceCompanyVm>(item);
+            return vm;
         }
+
+        public object GetInsuranceCompanyForEdit(string id)
+        {
+            var item = _insuranceCompanyRepo.GetInsuranceCompany(id);
+            var vm = _mapper.Map<NewInsuranceCompanyVm>(item);
+            return vm;
+        }
+
+        public void UpdateInsuranceCompany(NewInsuranceCompanyVm model)
+        {
+            var item = _mapper.Map<InsuranceCompany>(model);
+            if (item != null)
+            {
+                _insuranceCompanyRepo.UpdateInsuranceCompany(item);
+            }
+        }
+
+        public void DeleteInsuranceCompany(string id)
+        {
+            _insuranceCompanyRepo.DeleteInsuranceCompany(id);
+        }
+
+
     }
 
 }

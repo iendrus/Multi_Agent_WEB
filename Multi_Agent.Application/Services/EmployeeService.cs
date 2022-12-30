@@ -59,9 +59,11 @@ namespace Multi_Agent.Application.Services
         }
 
 
-        public EmployeeForListVm GetEmployeeDetails(int employeeId)
+        public EmployeeDetailsVm GetEmployeeDetails(int id)
         {
-            throw new NotImplementedException();
+            var employee = _employeeRepo.GetEmployee(id);
+            var employeeVm = _mapper.Map<EmployeeDetailsVm>(employee);
+            return employeeVm;
         }
 
         public int AddEmployee(NewEmployeeVm employee)
@@ -73,12 +75,23 @@ namespace Multi_Agent.Application.Services
 
         public NewEmployeeVm GetEmployeeForEdit(int id)
         {
-            throw new NotImplementedException();
+            var employee = _employeeRepo.GetEmployee(id);
+            var employeeVm = _mapper.Map<NewEmployeeVm>(employee);
+            return employeeVm;
         }
 
         public void UpdateEmployee(NewEmployeeVm model)
         {
-            throw new NotImplementedException();
+            var employee = _mapper.Map<Employee>(model);
+            if (employee != null)
+            {
+                _employeeRepo.UpdateEmployee(employee);
+            }
+        }
+
+        public void DeleteEmployee(int id)
+        {
+           _employeeRepo.DeleteEmployee(id);    
         }
     }
 }

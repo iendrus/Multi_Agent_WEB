@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Multi_Agent.Application\Multi_Agent.Application.csproj" />
     <ProjectReference Include="..\Multi_Agent.Domain\Multi_Agent.Domain.csproj" />
   </ItemGroup>
 

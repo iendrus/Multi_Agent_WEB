@@ -14,7 +14,7 @@ namespace Multi_Agent.Application.Interfaces
     {
         //int AddEmployee(NewEmployeeVm employee);
 
-        EmployeeForListVm GetEmployeeDetails(int employeeId);
+        EmployeeDetailsVm GetEmployeeDetails(int employeeId);
 
         ListEmployeeForListVM GetAllEmployeesForList();
 
@@ -24,6 +24,8 @@ namespace Multi_Agent.Application.Interfaces
         NewEmployeeVm GetEmployeeForEdit(int id);
 
         void UpdateEmployee(NewEmployeeVm model);
+
+        void DeleteEmployee(int id);    
 
     }
 }

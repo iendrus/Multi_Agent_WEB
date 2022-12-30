@@ -13,9 +13,11 @@ namespace Multi_Agent.Application.Interfaces
 
         void AddInsuranceCompany(NewInsuranceCompanyVm insuranceCompany);
 
-        InsuranceCompanyVm GetInsuranceCompanyDetails(int insuranceCompanyId);
+        InsuranceCompanyVm GetInsuranceCompanyDetails(string id);
 
         public ListInsuranceCompanyForListVm GetAllInsuranceCompanyForList();
-
+        object GetInsuranceCompanyForEdit(string id);
+        void UpdateInsuranceCompany(NewInsuranceCompanyVm model);
+        void DeleteInsuranceCompany(string id);
     }
 }

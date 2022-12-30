@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Multi_Agent.Domain.Base;
+using System;
 using System.Collections.Generic;
 
 namespace Multi_Agent.Domain.Model;
 
-public partial class Customer
+public partial class Customer : BaseEntity
 {
     public int Id { get; set; }
-
     public string? Surname { get; set; }
 
     public string? Name { get; set; }
@@ -29,15 +29,6 @@ public partial class Customer
 
     public string? Nip { get; set; }
 
-    public DateTime CreatedAt { get; set; }
-
-    public int CreatedBy { get; set; }
-
-    public DateTime? ModifiedAt { get; set; }
-
-    public int? ModifiedBy { get; set; }
-
-    public bool? IsActive { get; set; }
 
     public virtual Employee CreatedByNavigation { get; set; } = null!;
 

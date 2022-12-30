@@ -39,18 +39,17 @@ namespace Multi_Agent.Application.ViewModels.Policy
         [DisplayName("Inkaso")]
         public decimal PremiumPaid { get; set; }
 
-        [DisplayName("Data utworzenia")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
-        public DateTime CreatedAt { get; set; }
-
+      
         [DisplayName("Polisa obca")]
         public bool? IsForeign { get; set; }
-        
+
+        [DisplayName("Data utworzenia")]
+        public DateTime CreatedAt { get; set; }
+
         [DisplayName("Utwrozył")]
         public string CreatedBy { get; set; }
 
         [DisplayName("Data modyfikacji")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime? ModifiedAt { get; set; }
         
         [DisplayName("Zmodyfikował")]
@@ -63,7 +62,7 @@ namespace Multi_Agent.Application.ViewModels.Policy
         public string PolicyStatusName { get; set; }
 
         [DisplayName("Nazwa Klienta")]
-        public string CustomerFullName { get; set; } = null!;
+        public string CustomerFullName { get; set; } 
         
         [DisplayName("Agent")]
         public string AgentFullName { get; set; }
@@ -74,7 +73,6 @@ namespace Multi_Agent.Application.ViewModels.Policy
         public string PaymentTypeName { get; set; }
 
 
-
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Multi_Agent.Domain.Model.Policy, PolicyDetailsVm>()
@@ -83,9 +81,7 @@ namespace Multi_Agent.Application.ViewModels.Policy
                     + d.Customer.CompanyName))
                 .ForMember(s => s.AgentFullName, opt => opt.MapFrom(d => d.Agent.Surname + " " + d.Agent.Name))
                 .ForMember(s => s.CreatedBy, opt => opt.MapFrom(d => d.CreatedByNavigation.Surname + " " + d.CreatedByNavigation.Name))
-                .ForMember(s => s.ModifiedBy, opt => opt.MapFrom(d => d.ModifiedByNavigation.Surname + " " + d.ModifiedByNavigation.Name))
-                ;
-
+                .ForMember(s => s.ModifiedBy, opt => opt.MapFrom(d => d.ModifiedByNavigation.Surname + " " + d.ModifiedByNavigation.Name));
         }
 
     }

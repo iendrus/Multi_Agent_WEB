@@ -4,7 +4,7 @@
     ViewData["Title"] = "ViewPolicy";
 }
 
-<h1>Szczegóły polisy</h1>
+<h1>Szczegóły Polisy</h1>
 
 <div>
     <h4></h4>
@@ -122,6 +122,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edytuj", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edytuj", "EditPolicy", new { id = Model.Id }) |
     <a asp-action="Index">Kartoteka Polis</a>
 </div>

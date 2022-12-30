@@ -11,8 +11,8 @@ namespace Multi_Agent.Domain.Interfaces
     {
         IQueryable<Customer> GetAllActiveCustomers();
         Customer GetCustomer(int Id);
-        void DeleteCustomer(int Id);
         int AddCustomer(Customer customer);
         void UpdateCustomer(Customer customer);
+        void DeleteCustomer(int Id);
     }
 }

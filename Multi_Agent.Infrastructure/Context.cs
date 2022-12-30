@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Multi_Agent.Application.Helpers;
+using Multi_Agent.Domain.Base;
 using Multi_Agent.Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -13,9 +15,6 @@ namespace Multi_Agent.Infrastructure
     {
         public Context()
         {
-
-
-
         }
 
         public Context(DbContextOptions<Context> options)
@@ -230,6 +229,10 @@ namespace Multi_Agent.Infrastructure
                 entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
                 entity.Property(e => e.ModifiedAt).HasColumnType("datetime");
                 entity.Property(e => e.Name).HasMaxLength(255);
+                entity.Property(e => e.NIP).HasMaxLength(15);
+                entity.Property(e => e.EmailAddress).HasMaxLength(255);
+                entity.Property(e => e.PhoneNumber).HasMaxLength(15);
+                entity.Property(e => e.ContactPerson).HasMaxLength(120);
 
                 entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.InsuranceCompanyCreatedByNavigations)
                     .HasForeignKey(d => d.CreatedBy)
@@ -495,9 +498,31 @@ namespace Multi_Agent.Infrastructure
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
+        public override int SaveChanges()
+        {
+            var entries = ChangeTracker
+                .Entries()
+                .Where(e => e.Entity is BaseEntity && (
+                        e.State == EntityState.Added
+                        || e.State == EntityState.Modified));
 
+            foreach (var entityEntry in entries)
+            {
+                if (entityEntry.State == EntityState.Added)
+                {
+                    ((BaseEntity)entityEntry.Entity).CreatedAt = DateTime.Now;
+                    ((BaseEntity)entityEntry.Entity).CreatedBy = HelperFunctions.GetCurrentUserId();
+                    ((BaseEntity)entityEntry.Entity).IsActive = true;
+                }
+                else if (entityEntry.State == EntityState.Modified)
+                {
+                    ((BaseEntity)entityEntry.Entity).ModifiedAt = DateTime.Now;
+                    ((BaseEntity)entityEntry.Entity).ModifiedBy = HelperFunctions.GetCurrentUserId();
+                }
+            }
 
-
+            return base.SaveChanges();
+        }
     }
 
 }

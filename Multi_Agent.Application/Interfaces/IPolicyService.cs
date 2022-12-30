@@ -1,4 +1,5 @@
-﻿using Multi_Agent.Application.ViewModels.Policy;
+﻿using Multi_Agent.Application.ViewModels.Customer;
+using Multi_Agent.Application.ViewModels.Policy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,12 @@ namespace Multi_Agent.Application.Interfaces
         public List<PolicyTypeVm> GetAllPolicyTypesForList();
 
         public List<PaymentTypeVm> GetAllPaymentTypesForList();
+
+        NewPolicyVm GetPolicyForEdit(int id);
+
+        void UpdatePolicy(NewPolicyVm model);
+
+        void DeletePolicy(int id);
 
     }
 }

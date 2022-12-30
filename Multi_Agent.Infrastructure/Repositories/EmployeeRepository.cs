@@ -20,28 +20,9 @@ namespace Multi_Agent.Infrastructure.Repositories
         }
         public int AddEmployee(Employee employee)
         {
-            initilalizeFields(employee, "add");
             _context.Employees.Add(employee);
             _context.SaveChanges();
             return employee.Id;
-        }
-
-        private Employee initilalizeFields(Employee employee, string operation)
-        {
-            var item = employee;
-            switch (operation)
-            {
-                case "add":
-                    item.CreatedAt = DateTime.Now;
-                    item.CreatedBy = 1;
-                    item.IsActive = true;
-                    break;
-                case "edit":
-                    item.ModifiedAt = DateTime.Now;
-                    item.ModifiedBy = 2;
-                    break;
-            }
-            return item;
         }
 
 
@@ -67,6 +48,26 @@ namespace Multi_Agent.Infrastructure.Repositories
                 .Include(x => x.ModifiedByNavigation)
                 .FirstOrDefault(x => x.Id == Id);
             return employee;
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            if (employee != null)
+            {
+                _context.Update(employee);
+                _context.SaveChanges();
+            }
+        }
+
+        public void DeleteEmployee(int id)
+        {
+            var employee = _context.Employees.Find(id);
+            if (employee != null)
+            {
+                employee.IsActive = false;
+                _context.Employees.Update(employee);
+                _context.SaveChanges();
+            }
         }
     }
 }

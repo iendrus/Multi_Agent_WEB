@@ -18,6 +18,8 @@ namespace Multi_Agent.Application.Interfaces
 
         void UpdateCustomer(NewCustomerVm model);
 
+        void DeleteCustomer(int id);
+
 
     }
 }

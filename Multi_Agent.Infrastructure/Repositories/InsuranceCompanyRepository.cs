@@ -1,4 +1,5 @@
-﻿using Multi_Agent.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Multi_Agent.Domain.Interfaces;
 using Multi_Agent.Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -28,9 +29,31 @@ namespace Multi_Agent.Infrastructure.Repositories
         }
 
 
-        public InsuranceCompany GetInsuranceCompany(int Id)
+        public InsuranceCompany GetInsuranceCompany(string id)
         {
-            throw new NotImplementedException();
+            var item = _context.InsuranceCompanies
+            .FirstOrDefault(x => x.Id == id);
+            return item;
+        }
+
+        public void UpdateInsuranceCompany(InsuranceCompany item)
+        {
+            if (item != null)
+            {
+                _context.Update(item);
+                _context.SaveChanges();
+            }
+        }
+
+        public void DeleteInsuranceCompany(string id)
+        {
+            var item = _context.InsuranceCompanies.Find(id);
+            if (item != null)
+            {
+                item.IsActive = false;
+                _context.Update(item);
+                _context.SaveChanges();
+            }
         }
     }
 }

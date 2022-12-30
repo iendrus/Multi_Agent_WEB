@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Multi_Agent.Application.Interfaces;
 using Multi_Agent.Application.Services;
 using Multi_Agent.Application.ViewModels.Customer;
@@ -21,13 +22,18 @@ namespace Multi_Agent.Web.Controllers
             return View(model);
         }
 
-        // GET: EmployeeController/Details/5
-        public ActionResult Details(int id)
+
+        public ActionResult ViewEmployee(int id)
         {
-            return View();
+            var employee = _employeeService.GetEmployeeDetails(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return View(employee);
         }
 
-        // GET: EmployeeController/Create
+        [HttpGet]
         public ActionResult AddEmployee()
         {
             return View(new NewEmployeeVm());
@@ -46,52 +52,47 @@ namespace Multi_Agent.Web.Controllers
             return View(model);
         }
 
-        // GET: EmployeeController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public IActionResult EditEmployee(int id)
         {
-            return View();
+            var employee = _employeeService.GetEmployeeForEdit(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return View(employee);
         }
 
-        // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult EditEmployee(NewEmployeeVm model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _employeeService.UpdateEmployee(model);
+                    return RedirectToAction("Index");
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (model != null)
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
 
-        // GET: EmployeeController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult DeleteEmployee(int id)
         {
-            return View();
-        }
-
-        // POST: EmployeeController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
-        public IActionResult Create()
-        {
-            return RedirectToAction("AddEmployee");
+            _employeeService.DeleteEmployee(id);
+            return RedirectToAction("Index");
         }
     }
 }

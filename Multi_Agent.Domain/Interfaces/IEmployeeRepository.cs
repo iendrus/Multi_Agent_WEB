@@ -17,5 +17,7 @@ namespace Multi_Agent.Domain.Interfaces
         Employee GetEmployee(int Id);
 
         int AddEmployee(Employee employee);
+        void UpdateEmployee(Employee employee);
+        void DeleteEmployee(int id);
     }
 }

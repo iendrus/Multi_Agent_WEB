@@ -17,7 +17,6 @@ namespace Multi_Agent.Application.ViewModels.Policy
 {
     public class NewPolicyVm:IMapFrom<Multi_Agent.Domain.Model.Policy>
     {
-
         public int Id { get; set; }
 
         [DisplayName("Numer polisy")]
@@ -44,17 +43,9 @@ namespace Multi_Agent.Application.ViewModels.Policy
         [DisplayName("Inkaso")]
         public decimal PremiumPaid { get; set; }
 
-        [DisplayName("Data utworzenia")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
-        public DateTime CreatedAt { get; set; }
-
         [DisplayName("Polisa obca")]
         public bool? IsForeign { get; set; }
 
-        [DisplayName("Utwrozył")]
-        public int CreatedBy { get; set; }
-
-        public bool? IsActive { get; set; } //= true;
         [DisplayName("Klient")]
         public int CustomerId { get; set; }
 
@@ -69,34 +60,16 @@ namespace Multi_Agent.Application.ViewModels.Policy
         public string PolicyStatusId { get; set; }
         [DisplayName("Agent")]
         public int AgentId { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime? ModifiedAt { get; set; }
+        public int? ModifiedBy { get; set; }
 
-
-        public ICollection<PolicyStatus> PolicyStatuses { get; set; }
-
-        public IEnumerable<CustomerForListVm>  customers { get; set; }
-
-
-        public NewPolicyVm()
-        {
-            CreatedAt = DateTime.Now;
-            CreatedBy = CommonService.GetCurrentUser();
-            IsActive = true;
-            IsForeign = false;
-            PolicyDateStart = DateTime.Today;
-            PolicyDate = DateTime.Today;
-            PolicyDateEnd = DateTime.Today;
-            Premium = 0;
-            PremiumPaid = 0;
-        }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<NewPolicyVm, Multi_Agent.Domain.Model.Policy>();
-
-
+            profile.CreateMap<NewPolicyVm, Multi_Agent.Domain.Model.Policy>().ReverseMap();
         }
-
-
-
     }
 }

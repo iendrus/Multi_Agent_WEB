@@ -7,7 +7,7 @@
 <h1>Kartoteka Polis</h1>
 
 <p>
-    <a asp-action="Create">Dodaj polisę</a>
+    <a asp-action="AddPolicy">Dodaj polisę</a>
 </p>
 <form asp-action="Index" asp-controller="Policy" method="post">
     <div class="row">
@@ -89,7 +89,8 @@
 
                         <td>
                             @Html.ActionLink("Szczegóły", "ViewPolicy", new {  id=item.Id  }) |
-                            @Html.ActionLink("Usuń", "DeletePolicy", new {  id=item.Id  })
+                            @Html.ActionLink("Usuń", "DeletePolicy", new {  id=item.Id  },
+                new { onclick = "return confirm('Czy napewno chcesz usunąć polisę Id: " + @item.Id + "?')" })
                         </td>
                     </tr>
                 }

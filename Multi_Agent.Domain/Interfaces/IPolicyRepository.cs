@@ -25,6 +25,6 @@ namespace Multi_Agent.Domain.Interfaces
 
         void DeletePolicy(int policyId);
         int AddPolicy(Policy policy);
-
+        void UpdatePolicy(Policy policy);
     }
 }

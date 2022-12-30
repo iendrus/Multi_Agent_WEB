@@ -17,15 +17,7 @@ namespace Multi_Agent.Infrastructure.Repositories
             _context = context;
         }
 
-        public void DeletePolicy(int policyId)
-        {
-            var policy = _context.Policies.Find(policyId);
-            if(policy != null)
-            {
-                _context.Policies.Remove(policy);
-                _context.SaveChanges();
-            }
-        }
+
 
         public int AddPolicy(Policy policy)
         {
@@ -74,6 +66,26 @@ namespace Multi_Agent.Infrastructure.Repositories
         public IQueryable<PaymentType> GetAllActivePaymentTypes()
         {
             return _context.PaymentTypes.Where(p => p.IsActive == true);
+        }
+
+        public void UpdatePolicy(Policy policy)
+        {
+            if (policy != null)
+            {
+                _context.Update(policy);
+                _context.SaveChanges();
+            }
+        }
+
+        public void DeletePolicy(int policyId)
+        {
+            var policy = _context.Policies.Find(policyId);
+            if (policy != null)
+            {
+                policy.IsActive = false;
+                _context.Update(policy);
+                _context.SaveChanges();
+            }
         }
     }
 }

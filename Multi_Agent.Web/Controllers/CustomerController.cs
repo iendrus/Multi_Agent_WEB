@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Multi_Agent.Application.Interfaces;
 using Multi_Agent.Application.Services;
 using Multi_Agent.Application.ViewModels.Customer;
 using Multi_Agent.Application.ViewModels.Policy;
+using Multi_Agent.Domain.Model;
+using Multi_Agent.Infrastructure;
 
 namespace Multi_Agent.Web.Controllers
 {
@@ -21,8 +24,12 @@ namespace Multi_Agent.Web.Controllers
         }
         public IActionResult ViewCustomer(int Id)
         {
-            var customerModel = _customerService.GetCustomerDetails(Id);
-            return View(customerModel);
+            var customer = _customerService.GetCustomerDetails(Id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            return View(customer);
         }
         [HttpGet]
         public IActionResult AddCustomer()
@@ -34,8 +41,8 @@ namespace Multi_Agent.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddCustomer(NewCustomerVm model)
         {
-            if(ModelState.IsValid)
-            { 
+            if (ModelState.IsValid)
+            {
                 var id = _customerService.AddCustomer(model);
                 return RedirectToAction("Index");
             }
@@ -46,6 +53,10 @@ namespace Multi_Agent.Web.Controllers
         public IActionResult EditCustomer(int id)
         {
             var customer = _customerService.GetCustomerForEdit(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
             return View(customer);
         }
 
@@ -55,18 +66,32 @@ namespace Multi_Agent.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _customerService.UpdateCustomer(model);
-                return RedirectToAction("Index");
+                try
+                {
+                    _customerService.UpdateCustomer(model);
+                    return RedirectToAction("Index");
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (model != null)
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
             }
             return View(model);
         }
 
-
-
-        public IActionResult Create()
+        public IActionResult DeleteCustomer(int id)
         {
-            return RedirectToAction("AddCustomer");
+            _customerService.DeleteCustomer(id);
+            return RedirectToAction("Index");
         }
+
 
     }
 }

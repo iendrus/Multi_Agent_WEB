@@ -21,8 +21,8 @@ namespace Multi_Agent.Application.Services
         private readonly IMapper _mapper;
         public CustomerService(ICustomerRepository customerRepo, IMapper mapper)
         {
-            _customerRepo = customerRepo;   
-            _mapper = mapper;   
+            _customerRepo = customerRepo;
+            _mapper = mapper;
 
         }
 
@@ -31,6 +31,11 @@ namespace Multi_Agent.Application.Services
             var cust = _mapper.Map<Customer>(customer);
             var id = _customerRepo.AddCustomer(cust);
             return id;
+        }
+
+        public void DeleteCustomer(int id)
+        {
+            _customerRepo.DeleteCustomer(id);
         }
 
         public ListCustomerForListVm GetAllCustomersForList()
@@ -46,9 +51,9 @@ namespace Multi_Agent.Application.Services
         }
 
 
-        public CustomerDetailsVm GetCustomerDetails(int Id)
+        public CustomerDetailsVm GetCustomerDetails(int id)
         {
-            var customer = _customerRepo.GetCustomer(Id);
+            var customer = _customerRepo.GetCustomer(id);
             var customerVm = _mapper.Map<CustomerDetailsVm>(customer);
             return customerVm;
         }
@@ -63,7 +68,10 @@ namespace Multi_Agent.Application.Services
         public void UpdateCustomer(NewCustomerVm model)
         {
             var customer = _mapper.Map<Customer>(model);
-            _customerRepo.UpdateCustomer(customer);
+            if (customer != null)
+            {
+                _customerRepo.UpdateCustomer(customer);
+            }
         }
     }
 }

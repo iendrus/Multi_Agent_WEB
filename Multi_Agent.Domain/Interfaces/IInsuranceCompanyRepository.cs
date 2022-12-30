@@ -10,10 +10,12 @@ namespace Multi_Agent.Domain.Interfaces
     public interface IInsuranceCompanyRepository
     {
         IQueryable<InsuranceCompany> GetAllActiveInsuranceCompany();
-        InsuranceCompany GetInsuranceCompany(int Id);
+        InsuranceCompany GetInsuranceCompany(string id);
 
 
         //void DeleteCustomer(int Id);
         void AddInsuranceCompany(InsuranceCompany insuranceCompany);
+        void UpdateInsuranceCompany(InsuranceCompany item);
+        void DeleteInsuranceCompany(string id);
     }
 }

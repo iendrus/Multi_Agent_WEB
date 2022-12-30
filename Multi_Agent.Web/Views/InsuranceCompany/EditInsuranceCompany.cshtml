@@ -1,57 +1,58 @@
 ﻿@model Multi_Agent.Application.ViewModels.InsuranceCompany.NewInsuranceCompanyVm
 
 @{
-    ViewData["Title"] = "AddInsuranceCompany";
+    ViewData["Title"] = "EditInsuranceCompany";
 }
 
-<h1>Dodaj Towarzystwo Ubezpiczeniowe</h1>
+<h1>Edytuj dane Towarzystwa</h1>
 
 <h4></h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddInsuranceCompany">
+        <form asp-action="EditInsuranceCompany">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label class="control-label">Kod Towarzystwa</label>
-                <input asp-for="Id" class="form-control" />
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" readonly="true" />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Nazwa Towarzystwa</label>
+                <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">NIP</label>
+                <label asp-for="NIP" class="control-label"></label>
                 <input asp-for="NIP" class="form-control" />
                 <span asp-validation-for="NIP" class="text-danger"></span>
-                
             </div>
             <div class="form-group">
-                <label class="control-label">Osoba do kontaktu</label>
-                <input asp-for="ContactPerson" class="form-control" />
-                <span asp-validation-for="ContactPerson" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Numer telefonu</label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Adres email</label>
+                <label asp-for="EmailAddress" class="control-label"></label>
                 <input asp-for="EmailAddress" class="form-control" />
                 <span asp-validation-for="EmailAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="hidden" asp-for="ModifiedAt" />
-                <input type="hidden" asp-for="ModifiedBy" />
-                <input type="hidden" asp-for="CreatedAt" />
-                <input type="hidden" asp-for="CreatedBy" />
-                <input type="hidden" asp-for="IsActive" />
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Utwórz" class="btn btn-primary" />
+                <label asp-for="ContactPerson" class="control-label"></label>
+                <input asp-for="ContactPerson" class="form-control" />
+                <span asp-validation-for="ContactPerson" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="CreatedAt" />
+                <input type="hidden" asp-for="ModifiedAt" />
+                <input type="hidden" asp-for="CreatedBy" />
+                <input type="hidden" asp-for="ModifiedBy" />
+                <input type="hidden" asp-for="IsActive" />
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
         </form>
     </div>

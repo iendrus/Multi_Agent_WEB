@@ -28,11 +28,12 @@
                 <input asp-for="CompanyName" class="form-control" />
                 <span asp-validation-for="CompanyName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="IsHousehold" class="control-label"></label>
-                <input asp-for="IsHousehold" class="form-control" />
-                <span asp-validation-for="IsHousehold" class="text-danger"></span>
-            </div>
+            <br />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsHousehold" /> @Html.DisplayNameFor(model => model.IsHousehold)
+                </label>
+            </div><br />
             <div class="form-group">
                 <label asp-for="EmailAddress" class="control-label"></label>
                 <input asp-for="EmailAddress" class="form-control" />
@@ -69,14 +70,14 @@
                 <span asp-validation-for="Nip" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Utwórz" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Ewidencja Klientów</a>
 </div>
 
 @section Scripts {

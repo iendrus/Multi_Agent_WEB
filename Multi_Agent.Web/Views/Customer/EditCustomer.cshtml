@@ -13,9 +13,6 @@
         <form asp-action="EditCustomer">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <input type="hidden" asp-for="Id" class="form-control"/>
-            </div>
-            <div class="form-group">
                 <label asp-for="Surname" class="control-label"></label>
                 <input asp-for="Surname" class="form-control" />
                 <span asp-validation-for="Surname" class="text-danger"></span>
@@ -72,27 +69,23 @@
                 <span asp-validation-for="Nip" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="hidden" asp-for="CreatedAt" class="form-control" />
-                <input type="hidden" asp-for="ModifiedAt" class="form-control" />
-                <input type="hidden" asp-for="CreatedBy" class="form-control" />
-                <input type="hidden" asp-for="ModifiedBy" class="form-control" />
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="CreatedAt" />
+                <input type="hidden" asp-for="ModifiedAt" />
+                <input type="hidden" asp-for="CreatedBy" />
+                <input type="hidden" asp-for="ModifiedBy" />
+                <input type="hidden" asp-for="IsActive" />
             </div>
             <br />
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                </label>
-            </div>
-            <br/>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Ewidencja Klientów</a>
 </div>
 
 @section Scripts {

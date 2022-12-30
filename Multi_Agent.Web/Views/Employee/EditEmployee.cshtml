@@ -1,18 +1,17 @@
 ﻿@model Multi_Agent.Application.ViewModels.Employee.NewEmployeeVm
 
 @{
-    ViewData["Title"] = "AddEmployee";
+    ViewData["Title"] = "EditEmployee";
 }
 
-<h1>Dodaj pracownika</h1>
+<h1>Edytuj dane pracownika</h1>
 
 <h4></h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddEmployee">
+        <form asp-action="EditEmployee">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -44,17 +43,28 @@
                 <span asp-validation-for="EmploymentDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="hidden" asp-for="Id" />
+                <label asp-for="DismissalDate" class="control-label"></label>
+                <input asp-for="DismissalDate" class="form-control" />
+                <span asp-validation-for="DismissalDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="CreatedAt" />
+                <input type="hidden" asp-for="ModifiedAt" />
+                <input type="hidden" asp-for="CreatedBy" />
+                <input type="hidden" asp-for="ModifiedBy" />
+                <input type="hidden" asp-for="IsActive" />
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Ewidencja pracowników</a>
 </div>
 
 @section Scripts {

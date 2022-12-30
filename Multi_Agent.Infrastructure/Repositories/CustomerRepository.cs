@@ -4,6 +4,7 @@ using Multi_Agent.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,22 +18,26 @@ namespace Multi_Agent.Infrastructure.Repositories
             _context = context;
         }
 
-        public void DeleteCustomer(int Id)
+        public void DeleteCustomer(int id)
         {
-            var customer = _context.Customers.Find(Id);
+            var customer = _context.Customers.Find(id);
             if (customer != null)
             {
-                _context.Customers.Remove(customer);
+                customer.IsActive = false;
+                _context.Customers.Update(customer);
                 _context.SaveChanges();
             }
         }
 
         public int AddCustomer(Customer customer)
         {
-            initilalizeFields(customer, "add");
-            _context.Customers.Add(customer);
-            _context.SaveChanges();
-            return customer.Id;
+            if (customer != null)
+            {
+                _context.Customers.Add(customer);
+                _context.SaveChanges();
+                return customer.Id;
+            }
+            return 0;
         }
 
         public Customer GetCustomer(int customerId)
@@ -44,7 +49,6 @@ namespace Multi_Agent.Infrastructure.Repositories
             return customer;
         }
 
-
         public IQueryable<Customer> GetAllActiveCustomers()
         {
             return _context.Customers.Where(p => p.IsActive == true);
@@ -52,27 +56,12 @@ namespace Multi_Agent.Infrastructure.Repositories
 
         public void UpdateCustomer(Customer customer)
         {
-            initilalizeFields(customer, "edit");
-            _context.Update(customer);
-            _context.SaveChanges();
+            if (customer != null)
+            {
+                _context.Update(customer);
+                _context.SaveChanges();
+            }
         }
 
-        private Customer initilalizeFields(Customer customer, string operation)
-        {
-            var item = customer;
-            switch (operation)
-            {
-                case "add":
-                    item.CreatedAt = DateTime.Now;
-                    item.CreatedBy = 1;
-                    item.IsActive = true;
-                    break;
-                case "edit":
-                    item.ModifiedAt = DateTime.Now;
-                    item.ModifiedBy = 2;
-                    break;
-            }
-            return item;
-        }
     }
 }

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Multi_Agent.Domain.Base;
+using System;
 using System.Collections.Generic;
 
 namespace Multi_Agent.Domain.Model;
 
-public partial class Installment
+public partial class Installment : BaseEntity
 {
     public int Id { get; set; }
 
@@ -16,16 +17,6 @@ public partial class Installment
     public DateTime PaymentDate { get; set; }
 
     public bool IsPaid { get; set; }
-
-    public DateTime CreatedAt { get; set; }
-
-    public int CreatedBy { get; set; }
-
-    public DateTime? ModifiedAt { get; set; }
-
-    public int? ModifiedBy { get; set; }
-
-    public bool? IsActive { get; set; }
 
     public virtual Employee CreatedByNavigation { get; set; } = null!;
 

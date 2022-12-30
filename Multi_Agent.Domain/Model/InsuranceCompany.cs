@@ -1,23 +1,17 @@
-﻿using System;
+﻿using Multi_Agent.Domain.Base;
+using System;
 using System.Collections.Generic;
 
 namespace Multi_Agent.Domain.Model;
 
-public partial class InsuranceCompany
+public partial class InsuranceCompany : BaseEntity
 {
     public string Id { get; set; } = null!;
-
     public string Name { get; set; } = null!;
-
-    public DateTime CreatedAt { get; set; }
-
-    public int CreatedBy { get; set; }
-
-    public DateTime? ModifiedAt { get; set; }
-
-    public int? ModifiedBy { get; set; }
-
-    public bool? IsActive { get; set; }
+    public string? NIP { get; set; }
+    public string? EmailAddress { get; set; }
+    public string? PhoneNumber { get; set; }
+    public string? ContactPerson { get; set; }
 
     public virtual Employee CreatedByNavigation { get; set; } = null!;
 
