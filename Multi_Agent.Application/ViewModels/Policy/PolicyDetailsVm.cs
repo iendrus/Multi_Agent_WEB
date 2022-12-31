@@ -34,9 +34,11 @@ namespace Multi_Agent.Application.ViewModels.Policy
         public DateTime PolicyDateEnd { get; set; }
 
         [DisplayName("Przypis")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public decimal Premium { get; set; }
 
         [DisplayName("Inkaso")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public decimal PremiumPaid { get; set; }
 
       
@@ -46,7 +48,7 @@ namespace Multi_Agent.Application.ViewModels.Policy
         [DisplayName("Data utworzenia")]
         public DateTime CreatedAt { get; set; }
 
-        [DisplayName("Utwrozył")]
+        [DisplayName("Utworzył")]
         public string CreatedBy { get; set; }
 
         [DisplayName("Data modyfikacji")]

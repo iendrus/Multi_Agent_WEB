@@ -31,9 +31,13 @@ namespace Multi_Agent.Application.ViewModels.Employee
         public string login { get; set; }
 
         [DisplayName("Data zatrudnienia")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime EmploymentDate { get; set; }
 
         [DisplayName("Data zwolnienia")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? DismissalDate { get; set; }
 
         public DateTime CreatedAt { get; set; }

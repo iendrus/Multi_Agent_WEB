@@ -10,6 +10,7 @@ namespace Multi_Agent.Application.Helpers
     {
         public static int GetCurrentUserId()
         {
+            // metoda do zaimplementowania
             return 3;
         }
     }

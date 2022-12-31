@@ -28,17 +28,17 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Data Polisy</label>
-                <input asp-for="PolicyDate" class="form-control" />
+                <input asp-for="PolicyDate" class="form-control" value = "@ViewBag.PolicyDate"/>
                 <span asp-validation-for="PolicyDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Okres polisy OD</label>
-                <input asp-for="PolicyDateStart" class="form-control" />
+                <input asp-for="PolicyDateStart" class="form-control" value="@ViewBag.PolicyDateStart" />
                 <span asp-validation-for="PolicyDateStart" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Okres polisy DO</label>
-                <input asp-for="PolicyDateEnd" class="form-control"/>
+                <label class="control-label">Okres polisy DO </label>
+                <input asp-for="PolicyDateEnd" class="form-control" value = "@ViewBag.PolicyDateEnd" />
                 <span asp-validation-for="PolicyDateEnd" class="text-danger"></span>
             </div>
             <div class="form-group">

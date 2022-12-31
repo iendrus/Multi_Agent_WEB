@@ -13,9 +13,10 @@ namespace Multi_Agent.Application.ViewModels.InsuranceCompany
 {
     public class InsuranceCompanyVm : IMapFrom<Multi_Agent.Domain.Model.InsuranceCompany>
     {
-
+        [DisplayName("Kod")]
         public string Id { get; set; }
-
+        
+        [DisplayName("Nazwa")]
         public string Name { get; set; }
 
         public string? NIP { get; set; }
@@ -30,9 +31,23 @@ namespace Multi_Agent.Application.ViewModels.InsuranceCompany
 
         public string? ContactPerson { get; set; }
 
+        [DisplayName("Data utworzenia")]
+        public DateTime CreatedAt { get; set; }
+
+        [DisplayName("Data modyfikacji")]
+        public DateTime? ModifiedAt { get; set; }
+
+        [DisplayName("Utworzył")]
+        public string CreatedByFullName { get; set; }
+
+        [DisplayName("Zmodyfikował")]
+        public string? ModifiedByFullName { get; set; }
+
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Multi_Agent.Domain.Model.InsuranceCompany, InsuranceCompanyVm>();
+            profile.CreateMap<Multi_Agent.Domain.Model.InsuranceCompany, InsuranceCompanyVm>()
+                .ForMember(s => s.CreatedByFullName, opt => opt.MapFrom(d => d.CreatedByNavigation.Surname + " " + d.CreatedByNavigation.Name))
+                .ForMember(s => s.ModifiedByFullName, opt => opt.MapFrom(d => d.ModifiedByNavigation.Surname + " " + d.ModifiedByNavigation.Name)); ;
         }
 
     }

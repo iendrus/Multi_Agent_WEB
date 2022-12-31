@@ -26,21 +26,26 @@ namespace Multi_Agent.Application.ViewModels.Policy
         public string? RegistrationNumber { get; set; }
 
         [DisplayName("Data polisy")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime PolicyDate { get; set; }
 
         [DisplayName("Początek polisy")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime PolicyDateStart { get; set; }
 
         [DisplayName("Koniec polisy")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime PolicyDateEnd { get; set; }
 
         [DisplayName("Przypis")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}", ApplyFormatInEditMode = true)]
         public decimal Premium { get; set; }
 
         [DisplayName("Inkaso")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}", ApplyFormatInEditMode = true)]
         public decimal PremiumPaid { get; set; }
 
         [DisplayName("Polisa obca")]

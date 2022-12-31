@@ -40,12 +40,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="EmploymentDate" class="control-label"></label>
-                <input asp-for="EmploymentDate" class="form-control" />
+                <input asp-for="EmploymentDate" class="form-control" value="@DateTime.Today.ToShortDateString()" />
                 <span asp-validation-for="EmploymentDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="hidden" asp-for="Id" />
             </div>
+            <br/>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -54,7 +55,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Ewidencja pracowników</a>
 </div>
 
 @section Scripts {

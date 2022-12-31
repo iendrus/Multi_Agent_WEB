@@ -7,13 +7,13 @@
 <h1>Ewidencja Towarzystw Ubezpieczeniowych</h1>
 
 <p>
-    <a asp-action="AddInsuranceCompany">Dodaj nową Firmę</a>
+    <a asp-action="AddInsuranceCompany">Dodaj nowe Towarzystwo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Id
+                Kod
             </th>
             <th>
                 Nazwa Towarzystwa
@@ -57,7 +57,8 @@
 
                 <td>
                     @Html.ActionLink("Szczegóły", "ViewInsuranceCompany", new {  id=item.Id  }) |
-                    @Html.ActionLink("Usuń", "DeleteInsuranceCompany", new {  id=item.Id  })
+                    @Html.ActionLink("Usuń", "DeleteInsuranceCompany", new {  id=item.Id  },
+                new { onclick = "return confirm('Czy napewno chcesz usunąć Klienta Id: " + @item.Id + "?')" })
                 </td>
             </tr>
 }

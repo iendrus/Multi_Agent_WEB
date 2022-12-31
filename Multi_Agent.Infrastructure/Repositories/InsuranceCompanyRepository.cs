@@ -32,7 +32,9 @@ namespace Multi_Agent.Infrastructure.Repositories
         public InsuranceCompany GetInsuranceCompany(string id)
         {
             var item = _context.InsuranceCompanies
-            .FirstOrDefault(x => x.Id == id);
+                .Include(c => c.CreatedByNavigation)
+                .Include(c => c.ModifiedByNavigation)
+                .FirstOrDefault(x => x.Id == id);
             return item;
         }
 

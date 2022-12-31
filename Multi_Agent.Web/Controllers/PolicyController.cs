@@ -5,6 +5,7 @@ using Multi_Agent.Application.Interfaces;
 using Multi_Agent.Application.Services;
 using Multi_Agent.Application.ViewModels.Employee;
 using Multi_Agent.Application.ViewModels.Policy;
+using System.Drawing;
 
 namespace Multi_Agent.Web.Controllers
 {
@@ -65,6 +66,9 @@ namespace Multi_Agent.Web.Controllers
             ViewData["PaymentTypeId"] = new SelectList(_policyService.GetAllPaymentTypesForList(), "Id", "Name");
             ViewData["InsuranceCompanyId"] = new SelectList(_insuranceCompanyService.GetAllInsuranceCompanyForList().InsuranceCompanies, "Id", "Name");
             ViewData["AgentId"] = new SelectList(_employeeService.GetActiveAgentsList(), "Id", "FullName");
+            ViewBag.PolicyDate = DateTime.Today.ToShortDateString();
+            ViewBag.PolicyDateEnd = DateTime.Today.AddYears(1).AddDays(-1).ToShortDateString(); 
+            ViewBag.PolicyDateStart = DateTime.Today.ToShortDateString(); 
             return View(new NewPolicyVm());
         }
 

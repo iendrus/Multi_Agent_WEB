@@ -43,9 +43,11 @@ namespace Multi_Agent.Application.ViewModels.Policy
         public DateTime PolicyDate { get; set; }
 
         [DisplayName("Przypis")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public decimal Premium { get; set; }
 
         [DisplayName("Inkaso")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public string PaymentTypeName { get; set; } 
 
         public void Mapping(Profile profile)

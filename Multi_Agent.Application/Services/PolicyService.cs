@@ -58,21 +58,21 @@ namespace Multi_Agent.Application.Services
 
         public List<PolicyStatusVm> GetAllPolicyStatusesForList()
         {
-            var list = _policyRepo.GetAllActivePolicyStatuses().Where(p => p.IsActive == true)
+            var list = _policyRepo.GetAllActivePolicyStatuses()
                    .ProjectTo<PolicyStatusVm>(_mapper.ConfigurationProvider).ToList();
             return list;
         }
 
         public List<PolicyTypeVm> GetAllPolicyTypesForList()
         {
-            var list = _policyRepo.GetAllActivePolicyTypes().Where(p => p.IsActive == true)
+            var list = _policyRepo.GetAllActivePolicyTypes()
                    .ProjectTo<PolicyTypeVm>(_mapper.ConfigurationProvider).ToList();
             return list;
         }
 
         public List<PaymentTypeVm> GetAllPaymentTypesForList()
         {
-            var list = _policyRepo.GetAllActivePaymentTypes().Where(p => p.IsActive == true)
+            var list = _policyRepo.GetAllActivePaymentTypes()
                    .ProjectTo<PaymentTypeVm>(_mapper.ConfigurationProvider).ToList();
             return list;
         }

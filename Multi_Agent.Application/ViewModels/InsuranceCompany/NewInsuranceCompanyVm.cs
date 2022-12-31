@@ -13,7 +13,7 @@ namespace Multi_Agent.Application.ViewModels.InsuranceCompany
 {
     public class NewInsuranceCompanyVm : IMapFrom<Multi_Agent.Domain.Model.InsuranceCompany>
     {
-        [DisplayName("kod")]
+        [DisplayName("Kod")]
         public string Id { get; set; }
         [DisplayName("Nazwa")]
         public string Name { get; set; }
