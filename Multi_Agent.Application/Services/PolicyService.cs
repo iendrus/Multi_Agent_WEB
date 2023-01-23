@@ -10,9 +10,7 @@ using Multi_Agent.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Multi_Agent.Application.Services
 {
@@ -31,7 +29,8 @@ namespace Multi_Agent.Application.Services
         {
             // metoda ProjectTo wykorzystuje zdefiniowane  mapowanie 
 
-            var policies = _policyRepo.GetAllActivePolicies().Where(p => p.Customer.Surname.StartsWith(searachString))
+            var policies = _policyRepo.GetAllActivePolicies().
+                Where(p => p.Customer.Surname.StartsWith(searachString) || p.PolicyNumber.StartsWith(searachString))
                     .ProjectTo<PolicyForListVm>(_mapper.ConfigurationProvider).ToList();
 
             var customerToShow = policies.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();

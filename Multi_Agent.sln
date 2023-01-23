@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Multi_Agent.Domain", "Multi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Multi_Agent.Infrastructure", "Multi_Agent.Infrastructure\Multi_Agent.Infrastructure.csproj", "{00E69D06-67B2-4BA0-95B5-67B8AE0DDB63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multi_Agent.Web.API", "Multi_Agent.Web.API\Multi_Agent.Web.API.csproj", "{1D2B9616-B625-4E0D-8920-7B88ADFA83D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{00E69D06-67B2-4BA0-95B5-67B8AE0DDB63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00E69D06-67B2-4BA0-95B5-67B8AE0DDB63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00E69D06-67B2-4BA0-95B5-67B8AE0DDB63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D2B9616-B625-4E0D-8920-7B88ADFA83D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D2B9616-B625-4E0D-8920-7B88ADFA83D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D2B9616-B625-4E0D-8920-7B88ADFA83D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D2B9616-B625-4E0D-8920-7B88ADFA83D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{A86FC1F5-6FAC-4FC7-9572-2AD3E8AEF0BE} = {42FE0758-C0B4-4F05-9564-75E3C3DFBA75}
 		{258D8078-DA38-42B5-A5AF-D3B97612C629} = {D499BB14-BDB4-4216-A18B-768479D8AAFF}
 		{00E69D06-67B2-4BA0-95B5-67B8AE0DDB63} = {01773D59-86B6-4316-8165-5154CC62705B}
+		{1D2B9616-B625-4E0D-8920-7B88ADFA83D7} = {5A4BD83E-6073-4A17-914C-4A1CB31ED458}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B5F8BFE-E506-4A0B-8202-5BA4E932FD1C}
